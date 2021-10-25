@@ -1,8 +1,23 @@
 <?php
 $databaseHost = 'localhost';
+$databaseName = 'besttryi_kubera';
+$databaseUsername = 'besttryi_gym';
+$databasePassword = 'gym_password';
+
+/*
+//local
+$databaseHost = 'localhost';
 $databaseName = 'kubera';
 $databaseUsername = 'root';
 $databasePassword = '';
+
+
+//production
+$databaseHost = 'localhost';
+$databaseName = 'besttryi_kubera';
+$databaseUsername = 'besttryi_gym';
+$databasePassword = 'gym_password';
+*/
 
 
 try {
