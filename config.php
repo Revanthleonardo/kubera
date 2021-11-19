@@ -1,8 +1,8 @@
 <?php
 $databaseHost = 'localhost';
-$databaseName = 'besttryi_kubera';
-$databaseUsername = 'besttryi_gym';
-$databasePassword = 'gym_password';
+$databaseName = 'kubera';
+$databaseUsername = 'root';
+$databasePassword = '';
 
 /*
 //local
