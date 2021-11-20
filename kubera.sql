@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 25, 2021 at 03:11 PM
+-- Generation Time: Nov 20, 2021 at 10:42 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -24,6 +24,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `author`
+--
+
+CREATE TABLE `author` (
+  `author_id` int(11) NOT NULL,
+  `author_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `author`
+--
+
+INSERT INTO `author` (`author_id`, `author_name`) VALUES
+(1, 'Nolan'),
+(2, 'Rowling');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `book`
 --
 
@@ -32,8 +51,38 @@ CREATE TABLE `book` (
   `book_name` varchar(255) NOT NULL,
   `amount` varchar(255) NOT NULL,
   `book_path` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0
+  `status` int(11) NOT NULL DEFAULT 0,
+  `trending` int(11) NOT NULL DEFAULT 0,
+  `category_id` int(11) NOT NULL DEFAULT 0,
+  `author_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `book`
+--
+
+INSERT INTO `book` (`book_id`, `book_name`, `amount`, `book_path`, `status`, `trending`, `category_id`, `author_id`) VALUES
+(1, 'Memento short story', '100', 'https://www.londonscreenwritersfestival.com/assets/Memento-Short-Story-by-Jonathan-Nolan.pdf', 0, 0, 1, 1),
+(2, 'Harry Potter Book 1', '150', 'https://hpread.scholastic.com/HP_Book1_Chapter_Excerpt.pdf', 0, 1, 2, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `category`
+--
+
+CREATE TABLE `category` (
+  `category_id` int(11) NOT NULL,
+  `category_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `category`
+--
+
+INSERT INTO `category` (`category_id`, `category_name`) VALUES
+(1, 'Fiction'),
+(2, 'Entertainment');
 
 -- --------------------------------------------------------
 
@@ -61,7 +110,10 @@ CREATE TABLE `user` (
   `referral_id` int(11) NOT NULL DEFAULT 0,
   `password` varchar(255) NOT NULL,
   `registered_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `status` int(11) NOT NULL DEFAULT 0
+  `status` int(11) NOT NULL DEFAULT 0,
+  `referral_count` int(11) NOT NULL DEFAULT 0,
+  `level` int(11) NOT NULL DEFAULT 0,
+  `stage` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -69,10 +121,22 @@ CREATE TABLE `user` (
 --
 
 --
+-- Indexes for table `author`
+--
+ALTER TABLE `author`
+  ADD PRIMARY KEY (`author_id`);
+
+--
 -- Indexes for table `book`
 --
 ALTER TABLE `book`
   ADD PRIMARY KEY (`book_id`);
+
+--
+-- Indexes for table `category`
+--
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`category_id`);
 
 --
 -- Indexes for table `payment`
@@ -91,10 +155,22 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `author`
+--
+ALTER TABLE `author`
+  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `category`
+--
+ALTER TABLE `category`
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `payment`
