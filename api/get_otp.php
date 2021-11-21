@@ -11,7 +11,7 @@ $otp = "9876";
 
 //if mobile_number and password match
 if (isset($mobile_number)) {
-    $returnArr = array("api"=>"get_otp","result"=>"success","get_otp_api"=>$get_otp_api);
+    $returnArr = array("api"=>"get_otp","result"=>"success","otp"=>$otp);
 }
 else{
     $returnArr = array("api"=>"get_otp","result"=>"error");
