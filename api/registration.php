@@ -9,6 +9,7 @@ $name = $data['name'];
 $mobile_number = $data['mobile_number'];
 $password = $data['password'];
 $email = $data['email'];
+$otp = $data['otp'];
 
 
 
@@ -25,7 +26,7 @@ while($row = $duplicate_mobile_number->fetch(PDO::FETCH_ASSOC)) {
 
 //error_message
 if (isset($duplicate_data) || !isset($name) || !isset($mobile_number)
-    || !isset($password) || !isset($email)) {
+    || !isset($password) || !isset($email) || !isset($otp)) {
   $returnArr = array("api"=>"registration","result"=>"error");
 }
 
