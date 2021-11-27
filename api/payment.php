@@ -1,6 +1,38 @@
 <?php
 
+require '../config.php';
 
+//input_data
+$data = json_decode(file_get_contents('php://input'), true);
+
+$user_id = "1";
+$book_id = "1";
+
+//user_data
+$user_data = $dbConn->query("SELECT
+    *
+ FROM user
+ WHERE user_id IN ('$user_id')
+    ");
+
+while($row = $user_data->fetch(PDO::FETCH_ASSOC)) {
+    $name = $row['name'];
+    $mobile_number = $row['mobile_number'];
+    $email = $row['email'];
+}
+
+
+//book_data
+$book_data = $dbConn->query("SELECT
+    *
+ FROM book
+ WHERE book_id IN ('$book_id')
+    ");
+
+while($row = $book_data->fetch(PDO::FETCH_ASSOC)) {
+    $book_name = $row['book_name'];
+    $amount = $row['amount'];
+}
 
 $ch = curl_init();
 
@@ -12,7 +44,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER,
             array("X-Api-Key:f8976716a8a4c0b382047a7834faf49d",
                   "X-Auth-Token:c272b9b3e08ee23b1623ae254f91c0e1"));
 $payload = Array(
-    'purpose' => 'Book',
+    'purpose' => $book_name,
     'amount' => '10',
     'phone' => '8883388393',
     'buyer_name' => 'Test',
