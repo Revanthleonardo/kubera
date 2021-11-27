@@ -45,14 +45,14 @@ curl_setopt($ch, CURLOPT_HTTPHEADER,
                   "X-Auth-Token:c272b9b3e08ee23b1623ae254f91c0e1"));
 $payload = Array(
     'purpose' => $book_name,
-    'amount' => '10',
-    'phone' => '8883388393',
-    'buyer_name' => 'Test',
-    'redirect_url' => 'http://www.google.com/',
+    'amount' => $amount,
+    'phone' => $mobile_number,
+    'buyer_name' => $name,
+    'redirect_url' => 'http://gymtech.besttech.in/kubera/api/payment_status.php',
     'send_email' => false,
-    'webhook' => 'http://www.google.com/',
+    'webhook' => 'http://gymtech.besttech.in/kubera/api/payment_status.php',
     'send_sms' => false,
-    'email' => 'revanthapollo@gmail.com',
+    'email' => $email,
     'allow_repeated_payments' => false
 );
 curl_setopt($ch, CURLOPT_POST, true);
