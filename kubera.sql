@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2021 at 04:46 PM
+-- Generation Time: Nov 27, 2021 at 07:35 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.9
 
@@ -64,8 +64,8 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`book_id`, `book_name`, `book_image`, `amount`, `book_path`, `status`, `trending`, `category_id`, `author_id`) VALUES
-(1, 'Memento short story', 'https://nofilmschool.com/sites/default/files/uploads/2013/06/polaroid.jpg', '100', 'https://www.londonscreenwritersfestival.com/assets/Memento-Short-Story-by-Jonathan-Nolan.pdf', 0, 0, 1, 1),
-(2, 'Harry Potter Book 1', 'https://upload.wikimedia.org/wikipedia/en/d/d7/Harry_Potter_character_poster.jpg', '150', 'https://hpread.scholastic.com/HP_Book1_Chapter_Excerpt.pdf', 0, 1, 2, 2);
+(1, 'Memento short story', 'https://nofilmschool.com/sites/default/files/uploads/2013/06/polaroid.jpg', '10', 'https://www.londonscreenwritersfestival.com/assets/Memento-Short-Story-by-Jonathan-Nolan.pdf', 0, 0, 1, 1),
+(2, 'Harry Potter Book 1', 'https://upload.wikimedia.org/wikipedia/en/d/d7/Harry_Potter_character_poster.jpg', '10', 'https://hpread.scholastic.com/HP_Book1_Chapter_Excerpt.pdf', 0, 1, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -110,6 +110,7 @@ CREATE TABLE `user` (
   `user_id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `mobile_number` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
   `referral_id` int(11) NOT NULL DEFAULT 0,
   `password` varchar(255) NOT NULL,
   `registered_date` datetime NOT NULL DEFAULT current_timestamp(),
@@ -123,8 +124,8 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `name`, `mobile_number`, `referral_id`, `password`, `registered_date`, `status`, `referral_count`, `level`, `stage`) VALUES
-(1, 'admin', '12345678', 0, '0', '2021-11-27 21:13:46', 0, 0, 0, 0);
+INSERT INTO `user` (`user_id`, `name`, `mobile_number`, `email`, `referral_id`, `password`, `registered_date`, `status`, `referral_count`, `level`, `stage`) VALUES
+(1, 'admin', '8883388393', 'revanthapollo@gmail.com', 0, '0', '2021-11-27 21:13:46', 0, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
