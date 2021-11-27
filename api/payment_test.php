@@ -28,14 +28,10 @@ curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
 $response = curl_exec($ch);
 curl_close($ch); 
 
-$response_array = explode(",",$response);
 
-$response_url = $response_array[14];
+$response = json_decode($response, true);
+$longurl = $response['payment_request']['longurl'];
 
-$long_url_with_double_quote = str_replace('"longurl":',"",$response_url);
-$long_url = str_replace('"',"",$long_url_with_double_quote);
-$trim =  trim($long_url,"\n");
+header("Location: $longurl");
 
-
-header("Location: $trim");
 ?>
