@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 28, 2021 at 08:25 AM
+-- Generation Time: Nov 28, 2021 at 09:31 AM
 -- Server version: 5.7.23-23
 -- PHP Version: 7.3.32
 
@@ -121,16 +121,17 @@ CREATE TABLE `user` (
   `status` int(11) NOT NULL DEFAULT '0',
   `referral_count` int(11) NOT NULL DEFAULT '0',
   `level` int(11) NOT NULL DEFAULT '0',
-  `stage` int(11) NOT NULL DEFAULT '0'
+  `stage` int(11) NOT NULL DEFAULT '0',
+  `referral_number` varchar(255) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `name`, `mobile_number`, `email`, `referral_id`, `password`, `registered_date`, `status`, `referral_count`, `level`, `stage`) VALUES
-(1, 'admin', '8883388393', 'revanthapollo@gmail.com', 0, '0', '2021-11-27 21:13:46', 0, 0, 0, 0),
-(2, 'Aravind', '', 'aravinddurai03@gmail.com', 0, '12345', '2021-11-28 13:57:17', 0, 0, 0, 0);
+INSERT INTO `user` (`user_id`, `name`, `mobile_number`, `email`, `referral_id`, `password`, `registered_date`, `status`, `referral_count`, `level`, `stage`, `referral_number`) VALUES
+(1, 'admin', '8883388393', 'revanthapollo@gmail.com', 0, '0', '2021-11-27 21:13:46', 0, 0, 0, 0, '0'),
+(2, 'Aravind', '', 'aravinddurai03@gmail.com', 0, '12345', '2021-11-28 13:57:17', 0, 0, 0, 0, '0');
 
 --
 -- Indexes for dumped tables

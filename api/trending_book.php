@@ -3,12 +3,18 @@ require '../config.php';
 
 //trending_book_data
 $trending_book_data = $dbConn->query("SELECT
+    book.book_id,
     book.book_name,
+    book.book_image,
     book.amount,
     book.book_path,
     book.trending,
+    author.author_id,
     author.author_name,
-    category.category_name
+    author.author_image,
+    category.category_id,
+    category.category_name,
+    category.category_image
  FROM book
   LEFT JOIN 
   author ON

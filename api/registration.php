@@ -57,7 +57,7 @@ else{
     VALUES (
     '{$user_id}',
     '{$name}',
-    '{$date}',
+    '{$mobile_number}',
     '{$email}',
     '{$password}',
     '{$referral_number}'
