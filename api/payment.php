@@ -5,8 +5,8 @@ require '../config.php';
 //input_data
 $data = json_decode(file_get_contents('php://input'), true);
 
-$user_id = "1";
-$book_id = "1";
+$user_id = $data['user_id'];
+$book_id = $data['book_id'];
 
 //user_data
 $user_data = $dbConn->query("SELECT
@@ -34,6 +34,14 @@ while($row = $book_data->fetch(PDO::FETCH_ASSOC)) {
     $amount = $row['amount'];
 }
 
+//error_message
+if (!isset($user_id) || !isset($book_id)) {
+    $returnArr = array("api"=>"payment","result"=>"error");
+}
+
+
+else{
+
 $ch = curl_init();
 
 curl_setopt($ch, CURLOPT_URL, 'https://www.instamojo.com/api/1.1/payment-requests/');
@@ -44,7 +52,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER,
             array("X-Api-Key:f8976716a8a4c0b382047a7834faf49d",
                   "X-Auth-Token:c272b9b3e08ee23b1623ae254f91c0e1"));
 $payload = Array(
-    'purpose' => $book_name."-".$user_id."-".$book_id,
+    'purpose' => $book_name."-".$book_id."-".$user_id,
     'amount' => $amount,
     'phone' => $mobile_number,
     'buyer_name' => $name,
@@ -65,5 +73,8 @@ $response = json_decode($response, true);
 $longurl = $response['payment_request']['longurl'];
 
 header("Location: $longurl");
+}
+
+echo json_encode($returnArr);
 
 ?>
