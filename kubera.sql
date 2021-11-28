@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 27, 2021 at 07:35 PM
--- Server version: 10.4.20-MariaDB
--- PHP Version: 8.0.9
+-- Host: localhost:3306
+-- Generation Time: Nov 28, 2021 at 08:25 AM
+-- Server version: 5.7.23-23
+-- PHP Version: 7.3.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `kubera`
+-- Database: `besttryi_kubera`
 --
 
 -- --------------------------------------------------------
@@ -53,10 +54,10 @@ CREATE TABLE `book` (
   `book_image` varchar(255) NOT NULL,
   `amount` varchar(255) NOT NULL,
   `book_path` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT 0,
-  `trending` int(11) NOT NULL DEFAULT 0,
-  `category_id` int(11) NOT NULL DEFAULT 0,
-  `author_id` int(11) NOT NULL DEFAULT 0
+  `status` int(11) NOT NULL DEFAULT '0',
+  `trending` int(11) NOT NULL DEFAULT '0',
+  `category_id` int(11) NOT NULL DEFAULT '0',
+  `author_id` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -95,9 +96,12 @@ INSERT INTO `category` (`category_id`, `category_name`, `category_image`) VALUES
 
 CREATE TABLE `payment` (
   `payment_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL DEFAULT 0,
-  `book_id` int(11) NOT NULL DEFAULT 0,
-  `payment_date` datetime NOT NULL DEFAULT current_timestamp()
+  `user_id` int(11) NOT NULL DEFAULT '0',
+  `book_id` int(11) NOT NULL DEFAULT '0',
+  `payment_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `payment_id_instamojo` varchar(255) NOT NULL,
+  `payment_request_id_instamojo` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -111,13 +115,13 @@ CREATE TABLE `user` (
   `name` varchar(255) NOT NULL,
   `mobile_number` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `referral_id` int(11) NOT NULL DEFAULT 0,
+  `referral_id` int(11) NOT NULL DEFAULT '0',
   `password` varchar(255) NOT NULL,
-  `registered_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `status` int(11) NOT NULL DEFAULT 0,
-  `referral_count` int(11) NOT NULL DEFAULT 0,
-  `level` int(11) NOT NULL DEFAULT 0,
-  `stage` int(11) NOT NULL DEFAULT 0
+  `registered_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` int(11) NOT NULL DEFAULT '0',
+  `referral_count` int(11) NOT NULL DEFAULT '0',
+  `level` int(11) NOT NULL DEFAULT '0',
+  `stage` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -125,7 +129,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `name`, `mobile_number`, `email`, `referral_id`, `password`, `registered_date`, `status`, `referral_count`, `level`, `stage`) VALUES
-(1, 'admin', '8883388393', 'revanthapollo@gmail.com', 0, '0', '2021-11-27 21:13:46', 0, 0, 0, 0);
+(1, 'admin', '8883388393', 'revanthapollo@gmail.com', 0, '0', '2021-11-27 21:13:46', 0, 0, 0, 0),
+(2, 'Aravind', '', 'aravinddurai03@gmail.com', 0, '12345', '2021-11-28 13:57:17', 0, 0, 0, 0);
 
 --
 -- Indexes for dumped tables
@@ -193,7 +198,7 @@ ALTER TABLE `payment`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
