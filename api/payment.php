@@ -44,7 +44,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER,
             array("X-Api-Key:f8976716a8a4c0b382047a7834faf49d",
                   "X-Auth-Token:c272b9b3e08ee23b1623ae254f91c0e1"));
 $payload = Array(
-    'purpose' => $book_name,
+    'purpose' => $book_name."-".$user_id."-".$book_id,
     'amount' => $amount,
     'phone' => $mobile_number,
     'buyer_name' => $name,
