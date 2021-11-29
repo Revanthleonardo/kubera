@@ -67,14 +67,8 @@ curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($payload));
 $response = curl_exec($ch);
 curl_close($ch); 
-
-
-$response = json_decode($response, true);
-$longurl = $response['payment_request']['longurl'];
-
-header("Location: $longurl");
 }
 
-echo json_encode($returnArr);
+echo ($response);
 
 ?>

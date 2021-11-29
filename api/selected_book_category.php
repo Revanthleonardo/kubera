@@ -29,7 +29,7 @@ $selected_book_category = $dbConn->query("SELECT
   category ON
   category.category_id = book.category_id
  WHERE book.status IN ('$active')
- AND book.author_id IN ('$author_id')
+ AND book.author_id IN ('$category_id')
     ");
 
 while($row = $selected_book_category->fetch(PDO::FETCH_ASSOC)) {
