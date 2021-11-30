@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 28, 2021 at 09:31 AM
+-- Generation Time: Nov 30, 2021 at 03:18 AM
 -- Server version: 5.7.23-23
 -- PHP Version: 7.3.32
 
@@ -40,7 +40,8 @@ CREATE TABLE `author` (
 
 INSERT INTO `author` (`author_id`, `author_name`, `author_image`) VALUES
 (1, 'Nolan', 'https://www.hollywoodreporter.com/wp-content/uploads/2021/09/Christopher-Nolan-attends-the-screening-of-2001-A-Space-Odyssey-Getty-H-2021.jpg'),
-(2, 'Rowling', 'https://www.globaltimes.cn/Portals/0/attachment/2020/2020-11-15/5aa0f4cd-ca32-46aa-ac18-79a047db4ebe.jpeg');
+(2, 'Rowling', 'https://www.globaltimes.cn/Portals/0/attachment/2020/2020-11-15/5aa0f4cd-ca32-46aa-ac18-79a047db4ebe.jpeg'),
+(3, 'M.Mani', 'https://www.mediabistro.com/wp-content/uploads/2014/09/best-selling-author.jpg');
 
 -- --------------------------------------------------------
 
@@ -66,7 +67,8 @@ CREATE TABLE `book` (
 
 INSERT INTO `book` (`book_id`, `book_name`, `book_image`, `amount`, `book_path`, `status`, `trending`, `category_id`, `author_id`) VALUES
 (1, 'Memento short story', 'https://nofilmschool.com/sites/default/files/uploads/2013/06/polaroid.jpg', '10', 'https://www.londonscreenwritersfestival.com/assets/Memento-Short-Story-by-Jonathan-Nolan.pdf', 0, 0, 1, 1),
-(2, 'Harry Potter Book 1', 'https://upload.wikimedia.org/wikipedia/en/d/d7/Harry_Potter_character_poster.jpg', '10', 'https://hpread.scholastic.com/HP_Book1_Chapter_Excerpt.pdf', 0, 1, 2, 2);
+(2, 'Harry Potter Book 1', 'https://upload.wikimedia.org/wikipedia/en/d/d7/Harry_Potter_character_poster.jpg', '10', 'https://hpread.scholastic.com/HP_Book1_Chapter_Excerpt.pdf', 0, 1, 2, 2),
+(3, 'Yaar sirandha pakthan', 'https://gymtech.besttech.in/kubera/Yaar_sirandha_pakthan.jpeg', '10', 'https://gymtech.besttech.in/kubera/Yaar_sirandha_pakthan.pdf', 0, 1, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -86,7 +88,8 @@ CREATE TABLE `category` (
 
 INSERT INTO `category` (`category_id`, `category_name`, `category_image`) VALUES
 (1, 'Fiction', 'https://www.indianfolk.com/wp-content/uploads/2017/09/booklights.jpg'),
-(2, 'Entertainment', 'https://www.popoptiq.com/wp-content/uploads/2019/01/1-26-1-870x653.jpg');
+(2, 'Entertainment', 'https://www.popoptiq.com/wp-content/uploads/2019/01/1-26-1-870x653.jpg'),
+(3, 'Spiritual', 'https://i.pinimg.com/474x/55/c1/0b/55c10b3504cea9f9b0161d7fa043b471.jpg');
 
 -- --------------------------------------------------------
 
@@ -103,6 +106,13 @@ CREATE TABLE `payment` (
   `payment_request_id_instamojo` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment`
+--
+
+INSERT INTO `payment` (`payment_id`, `user_id`, `book_id`, `payment_date`, `payment_id_instamojo`, `payment_request_id_instamojo`, `status`) VALUES
+(1, 1, 1, '2021-11-29 16:42:21', 'MOJO1b29305Q57125356', 'f691122d15e6455ea7c4b8412dc52fc6', 0);
 
 -- --------------------------------------------------------
 
@@ -131,7 +141,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`user_id`, `name`, `mobile_number`, `email`, `referral_id`, `password`, `registered_date`, `status`, `referral_count`, `level`, `stage`, `referral_number`) VALUES
 (1, 'admin', '8883388393', 'revanthapollo@gmail.com', 0, '0', '2021-11-27 21:13:46', 0, 0, 0, 0, '0'),
-(2, 'Aravind', '', 'aravinddurai03@gmail.com', 0, '12345', '2021-11-28 13:57:17', 0, 0, 0, 0, '0');
+(3, 'Durai', '7092955272', 'aravindmec0w@gmail.com', 0, '12345', '2021-11-29 14:43:25', 0, 0, 0, 0, '0000000342747021'),
+(4, 'parthiban', '8220101531', 'parthiyeshwanth@gmail.com', 0, 'danushda@1', '2021-11-29 18:36:01', 0, 0, 0, 0, '0000000458181365'),
+(5, 'prabaharan ', '9791505131', 'athipraba8@gmail.com', 0, 'Digital@88', '2021-11-29 18:36:47', 0, 0, 0, 0, '0000000565737945');
 
 --
 -- Indexes for dumped tables
@@ -175,31 +187,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `author`
 --
 ALTER TABLE `author`
-  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `author_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `book_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `category_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
-  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `payment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
