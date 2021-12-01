@@ -42,6 +42,9 @@ $dbConn->query("INSERT INTO `payment` (
     )
     ;");
 
+//update payment status
+$dbConn->query("UPDATE `user` SET `payment_status` = '$inactive' WHERE user_id IN ('$user_id')");
+
 	$returnArr = array("api"=>"payment_status","result"=>"payment success");
 
 }
