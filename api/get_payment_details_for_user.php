@@ -5,7 +5,7 @@ require '../config.php';
 //input_data
 $data = json_decode(file_get_contents('php://input'), true);
 
-$user_id = "1";
+$user_id = $data['user_id'];
 
 //get_payment_details_for_user
 $get_payment_details_for_user = $dbConn->query("SELECT
