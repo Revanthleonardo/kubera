@@ -1,13 +1,18 @@
 <?php
 
-
-$user_id = 1000;
-$random_number = rand(0,99999999);
-$referral_number = str_pad($user_id, 8, '0', STR_PAD_LEFT)."".str_pad($random_number, 8, '0', STR_PAD_LEFT);
 /*
-$user_id_filtered = ltrim((substr($referral_number, 0, -8)),'0') ;
+for ($i=2; $i <=1000; $i++) { 
+
+$name = "1";
+$mobile_number = $i;
+$referral_number = $i;
+$password = "1";
+$email = "1";
+$otp = "1";
+
+	include "registration.php";
+}
 */
-echo $referral_number;
-echo "<br>";
-echo $user_id_filtered;
+
+
 ?>

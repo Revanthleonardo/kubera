@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 01, 2021 at 12:45 PM
--- Server version: 5.7.23-23
--- PHP Version: 7.3.32
+-- Host: 127.0.0.1
+-- Generation Time: Dec 01, 2021 at 07:55 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `besttryi_kubera`
+-- Database: `kubera`
 --
 
 -- --------------------------------------------------------
@@ -55,10 +54,10 @@ CREATE TABLE `book` (
   `book_image` varchar(255) NOT NULL,
   `amount` varchar(255) NOT NULL,
   `book_path` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '0',
-  `trending` int(11) NOT NULL DEFAULT '0',
-  `category_id` int(11) NOT NULL DEFAULT '0',
-  `author_id` int(11) NOT NULL DEFAULT '0'
+  `status` int(11) NOT NULL DEFAULT 0,
+  `trending` int(11) NOT NULL DEFAULT 0,
+  `category_id` int(11) NOT NULL DEFAULT 0,
+  `author_id` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -99,12 +98,12 @@ INSERT INTO `category` (`category_id`, `category_name`, `category_image`) VALUES
 
 CREATE TABLE `payment` (
   `payment_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL DEFAULT '0',
-  `book_id` int(11) NOT NULL DEFAULT '0',
-  `payment_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `user_id` int(11) NOT NULL DEFAULT 0,
+  `book_id` int(11) NOT NULL DEFAULT 0,
+  `payment_date` datetime NOT NULL DEFAULT current_timestamp(),
   `payment_id_instamojo` varchar(255) NOT NULL,
   `payment_request_id_instamojo` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL DEFAULT '0'
+  `status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -125,25 +124,26 @@ CREATE TABLE `user` (
   `name` varchar(255) NOT NULL,
   `mobile_number` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `referral_id` int(11) NOT NULL DEFAULT '0',
+  `referral_id` int(11) NOT NULL DEFAULT 0,
   `password` varchar(255) NOT NULL,
-  `registered_date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` int(11) NOT NULL DEFAULT '0',
-  `referral_count` int(11) NOT NULL DEFAULT '0',
-  `level` int(11) NOT NULL DEFAULT '0',
-  `stage` int(11) NOT NULL DEFAULT '0',
-  `referral_number` varchar(255) NOT NULL DEFAULT '0'
+  `registered_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `status` int(11) NOT NULL DEFAULT 0,
+  `referral_count` int(11) NOT NULL DEFAULT 0,
+  `level` int(11) NOT NULL DEFAULT 0,
+  `stage` int(11) NOT NULL DEFAULT 0,
+  `referral_number` varchar(255) NOT NULL DEFAULT '0',
+  `payment_status` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `name`, `mobile_number`, `email`, `referral_id`, `password`, `registered_date`, `status`, `referral_count`, `level`, `stage`, `referral_number`) VALUES
-(1, 'admin', '8883388393', 'revanthapollo@gmail.com', 0, '0', '2021-11-27 21:13:46', 0, 0, 0, 0, '0'),
-(3, 'Durai', '7092955272', 'aravindmec0w@gmail.com', 0, '12345', '2021-11-29 14:43:25', 0, 0, 0, 0, '0000000342747021'),
-(4, 'parthiban', '8220101531', 'parthiyeshwanth@gmail.com', 0, 'danushda@1', '2021-11-29 18:36:01', 0, 0, 0, 0, '0000000458181365'),
-(5, 'prabaharan ', '9791505131', 'athipraba8@gmail.com', 0, 'Digital@88', '2021-11-29 18:36:47', 0, 0, 0, 0, '0000000565737945');
+INSERT INTO `user` (`user_id`, `name`, `mobile_number`, `email`, `referral_id`, `password`, `registered_date`, `status`, `referral_count`, `level`, `stage`, `referral_number`, `payment_status`) VALUES
+(1, 'admin', '8883388393', 'revanthapollo@gmail.com', 0, '0', '2021-11-27 21:13:46', 0, 0, 0, 0, '0', 0),
+(3, 'Durai', '7092955272', 'aravindmec0w@gmail.com', 0, '12345', '2021-11-29 14:43:25', 0, 0, 0, 0, '0000000342747021', 0),
+(4, 'parthiban', '8220101531', 'parthiyeshwanth@gmail.com', 0, 'danushda@1', '2021-11-29 18:36:01', 0, 0, 0, 0, '0000000458181365', 0),
+(5, 'prabaharan ', '9791505131', 'athipraba8@gmail.com', 0, 'Digital@88', '2021-11-29 18:36:47', 0, 0, 0, 0, '0000000565737945', 0);
 
 --
 -- Indexes for dumped tables
