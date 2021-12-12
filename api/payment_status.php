@@ -28,6 +28,20 @@ $purpose_array = explode("-",$purpose);
 $book_id = $purpose_array[1];
 $user_id = $purpose_array[2];
 
+//payment_details_data
+$payment_details_data = $dbConn->query("SELECT
+    status
+ FROM payment
+ WHERE status IN ('$active') 
+ AND payment_id_instamojo IN ('$payment_id_instamojo')
+    ");
+
+while($row = $payment_details_data->fetch(PDO::FETCH_ASSOC)) {
+    $status = $row['status'];
+}
+
+if (!isset($status)) {
+
 $dbConn->query("INSERT INTO `payment` (
     `user_id`,
     `book_id`,
@@ -41,6 +55,8 @@ $dbConn->query("INSERT INTO `payment` (
     '{$payment_request_id}'
     )
     ;");
+
+}
 
 //update payment status
 $dbConn->query("UPDATE `user` SET `payment_status` = '$inactive' WHERE user_id IN ('$user_id')");
