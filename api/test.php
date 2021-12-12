@@ -46,9 +46,13 @@ while($row = $referral_number_user_data->fetch(PDO::FETCH_ASSOC)) {
     if ($referral_number_user_data_referral_count < 4) {
     	//
     	echo "less than 4 insert and update count";
-    	
+
+    	/*
+
     	//update status for user
-    	$dbConn->query("UPDATE `user` SET `status` = '$inactive',
+    	$dbConn->query("UPDATE `user` SET 
+
+    		/*`status` = '$inactive',
     	`referral_id` = '$referral_number_user_data_user_id' WHERE user_id IN ('$user_id')");
 
     	//add 1 to referral count to user
@@ -56,15 +60,23 @@ while($row = $referral_number_user_data->fetch(PDO::FETCH_ASSOC)) {
 
     	//update referral count for referrer
     	$dbConn->query("UPDATE `user` SET `referral_count` = '$actual_referral_number_user_data_referral_count' WHERE referral_number IN ('$referral_number')");
+
+    	*/
+    	
+    }
+    else{
+    	echo "positions filled";
     }
 
-}
+
+}//query
 
 
-}
+}//payment_status
 else{
-	echo "not paid";
+    	echo "already updated";
 }
+
 
 
 
