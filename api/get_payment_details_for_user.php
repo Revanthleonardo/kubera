@@ -36,6 +36,7 @@ $get_payment_details_for_user = $dbConn->query("SELECT
   category ON
   category.category_id = book.category_id
  WHERE payment.user_id IN ('$user_id')
+ GROUP BY payment.payment_id_instamojo
     ");
 
 while($row = $get_payment_details_for_user->fetch(PDO::FETCH_ASSOC)) {

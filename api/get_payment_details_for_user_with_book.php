@@ -44,6 +44,7 @@ $book_data = $dbConn->query("SELECT
   category.category_id = book.category_id
  WHERE book.status IN ('$active')
  AND book.book_id IN ('$book_id')
+ GROUP BY payment.payment_id_instamojo
     ");
 
 while($row = $book_data->fetch(PDO::FETCH_ASSOC)) {
