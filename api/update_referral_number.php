@@ -6,7 +6,6 @@ include '../config.php';
 $data = json_decode(file_get_contents('php://input'), true);
 
 $user_id = $_data['user_id'];
-$level = $_data['level'];
 $referral_number = $_data['referral_number'];
 
 
@@ -23,6 +22,7 @@ $user_payment_check = $dbConn->query("SELECT
 
 while($row = $user_payment_check->fetch(PDO::FETCH_ASSOC)) {
     $payment_status = $row['payment_status'];
+    $level = $row['level'];
 }
 
 //if paid
