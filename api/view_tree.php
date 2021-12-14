@@ -2,11 +2,9 @@
 
 include '../config.php';
 
-//input_data
-$data = json_decode(file_get_contents('php://input'), true);
 
-$user_id = $_data['user_id'];
-$level = $_data['level'];
+$user_id = $_GET['user_id'];
+$level = $_GET['level'];
 
 
 //view_tree_user_data
@@ -35,7 +33,7 @@ $returnArr = array("api"=>"view_tree","result"=>"success","view_tree_api"=>$view
 }
 else {
     $returnArr = array("api"=>"view_tree","result"=>"error");
-}	
+}   
 
 echo json_encode($returnArr);
 
