@@ -2,8 +2,13 @@
 
 include '../config.php';
 
-$user_id = $_GET['user_id'];
-$referral_number = $_GET['referral_number'];
+
+//input_data
+$data = json_decode(file_get_contents('php://input'), true);
+
+$user_id = $_data['user_id'];
+$referral_number = $_data['referral_number'];
+
 
 
 //user_payment_check
@@ -49,7 +54,6 @@ while($row = $referral_number_user_data->fetch(PDO::FETCH_ASSOC)) {
 
     	//update referral count for the tree
     	$update_data = 1;
-
     	$returnArr = array("api"=>"update_referral_number","result"=>"success");
 
     }
@@ -103,8 +107,7 @@ while($row = $referral_number_user_data->fetch(PDO::FETCH_ASSOC)) {
 
 		$level_user_id_input = $level_referral_id;
 
-		//echo $level_user_id;
-		//echo "<br>";
+
 		}
 		}
 		}//update_data
@@ -112,13 +115,13 @@ while($row = $referral_number_user_data->fetch(PDO::FETCH_ASSOC)) {
 
 }//payment_status
 else{
-    	//echo "already updated";
-    	$returnArr = array("api"=>"update_referral_number","result"=>"error");
+    	
+	$returnArr = array("api"=>"update_referral_number","result"=>"error");
+    	
 }
 
 
 echo json_encode($returnArr);
-
 
 
 ?>
