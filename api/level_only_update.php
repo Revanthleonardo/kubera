@@ -5,7 +5,7 @@ include '../config.php';
 //input_data
 $data = json_decode(file_get_contents('php://input'), true);
 
-$user_id = $_data['user_id'];
+$user_id = $_GET['user_id'];
 
 //level_only_update
 $level_only_update = $dbConn->query("SELECT

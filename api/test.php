@@ -4,7 +4,6 @@ include '../config.php';
 
 
 $user_id = $_GET['user_id'];
-$level = $_GET['level'];
 $referral_number = $_GET['referral_number'];
 
 echo "user_id = ".$user_id;
@@ -20,12 +19,12 @@ $user_payment_check = $dbConn->query("SELECT
  FROM user
  WHERE user_id IN ('$user_id')
  AND payment_status IN ('$inactive')
- AND level IN ('$level')
  AND status IN ('$active')
     ");
 
 while($row = $user_payment_check->fetch(PDO::FETCH_ASSOC)) {
     $payment_status = $row['payment_status'];
+    $level = $row['level'];
 }
 
 //if paid
@@ -91,19 +90,19 @@ while($row = $referral_number_user_data->fetch(PDO::FETCH_ASSOC)) {
     	//update stage
     	//stage_1
     	if ($actual_level_referral_count == 4) {
-    		$dbConn->query("UPDATE `user` SET `stage` = '1' WHERE referral_number IN ('$level_referral_number')");
+    		$dbConn->query("UPDATE `user` SET `stage` = '1' WHERE referral_number IN ('$level_referral_number') AND level IN ('$level')");
     	}
     	//stage_2
     	if ($actual_level_referral_count == 20) {
-    		$dbConn->query("UPDATE `user` SET `stage` = '2' WHERE referral_number IN ('$level_referral_number')");
+    		$dbConn->query("UPDATE `user` SET `stage` = '2' WHERE referral_number IN ('$level_referral_number') AND level IN ('$level')");
     	}
     	//stage_2
     	if ($actual_level_referral_count == 84) {
-    		$dbConn->query("UPDATE `user` SET `stage` = '3' WHERE referral_number IN ('$level_referral_number')");
+    		$dbConn->query("UPDATE `user` SET `stage` = '3' WHERE referral_number IN ('$level_referral_number') AND level IN ('$level')");
     	}
 
     	//update referral count for referrer
-    	$dbConn->query("UPDATE `user` SET `referral_count` = '$actual_level_referral_count' WHERE referral_number IN ('$level_referral_number')");
+    	$dbConn->query("UPDATE `user` SET `referral_count` = '$actual_level_referral_count' WHERE referral_number IN ('$level_referral_number') AND level IN ('$level')");
 
 		$level_user_id_input = $level_referral_id;
 
