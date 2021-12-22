@@ -64,54 +64,6 @@ while($row = $referral_number_user_data->fetch(PDO::FETCH_ASSOC)) {
 
 }//query
 
-		if (isset($update_data)) {
-		//update referral count for the tree
-    	//level_data updating for referral_number_user_id
-		$level_user_id_input = $referral_number_user_data_user_id;
-
-		while ($level_user_id_input > 0) {
-
-		$level_get_level_data = $dbConn->query("SELECT 
-		*
-		  FROM user   
-		  WHERE user_id IN ('$level_user_id_input')
-		  LIMIT 1
-		");
-		if($row = $level_get_level_data->fetch(PDO::FETCH_ASSOC)) {
-
-		$level_user_id = $row['user_id'];
-		$level_referral_id = $row['referral_id'];
-		$level_referral_count = $row['referral_count'];
-		$level_referral_number = $row['referral_number'];
-
-		//add 1 to referral count to user
-    	$actual_level_referral_count = $level_referral_count + 1;
-
-    	//update stage
-    	//stage_1
-    	if ($actual_level_referral_count == 4) {
-    		$dbConn->query("UPDATE `user` SET `stage` = '1' WHERE referral_number IN ('$level_referral_number') AND level IN ('$level')");
-    	}
-    	//stage_2
-    	if ($actual_level_referral_count == 20) {
-    		$dbConn->query("UPDATE `user` SET `stage` = '2' WHERE referral_number IN ('$level_referral_number') AND level IN ('$level')");
-    	}
-    	//stage_2
-    	if ($actual_level_referral_count == 84) {
-    		$dbConn->query("UPDATE `user` SET `stage` = '3' WHERE referral_number IN ('$level_referral_number') AND level IN ('$level')");
-    	}
-
-    	//update referral count for referrer
-    	$dbConn->query("UPDATE `user` SET `referral_count` = '$actual_level_referral_count' WHERE referral_number IN ('$level_referral_number') AND level IN ('$level')");
-
-		$level_user_id_input = $level_referral_id;
-
-		echo $level_user_id;
-		echo "<br>";
-		}
-		}
-		}//update_data
-
 
 }//payment_status
 else{
