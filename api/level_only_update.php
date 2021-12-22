@@ -22,7 +22,7 @@ while($row = $level_only_update->fetch(PDO::FETCH_ASSOC)) {
     $level = $row['level'];
 
     //reset stage and referral_count and add level
-    if ($stage == 3 && $referral_count >= 84 && $level < 4) {
+    if ($referral_count >= 84 && $level < 4) {
 
     	$actual_level = $level + 1;
 
