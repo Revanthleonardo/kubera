@@ -17,16 +17,13 @@ $user_payment_check = $dbConn->query("SELECT
     ");
 
 while($row = $user_payment_check->fetch(PDO::FETCH_ASSOC)) {
-    $referral_number_db = $row['referral_number'];
-    if ($referral_number_db == $referral_number) {
-    	// code...
-    }
+    $referral_number_user = $row['referral_number'];
     $payment_status = $row['payment_status'];
     $level = $row['level'];
 }
 
 //if paid
-if (isset($payment_status)) {
+if (isset($payment_status) && $referral_number != $referral_number_user) {
 
 
 	//referral_number_user_data
@@ -84,104 +81,6 @@ else{
 
 echo json_encode($returnArr);
 
-/*
 
-
-function referralCount( $user_id_input , $level_input  ) {
-include '../config.php';
-//stage_1
-$stage_1_data = $dbConn->query("SELECT 
-*
-  FROM user   
-  WHERE referral_id IN ('$user_id_input')
-  AND level IN ('$level_input')
-");
-while($row = $stage_1_data->fetch(PDO::FETCH_ASSOC)) {
-
-$stage_1_user_id[] = $row['user_id'];
-}
-//stage_1
-
-//stage_2
-foreach ($stage_1_user_id as $key => $stage_1_user_id_value) {
-$stage_2_data = $dbConn->query("SELECT 
-*
-  FROM user   
-  WHERE referral_id IN ('$stage_1_user_id_value')
-  AND level IN ('$level_input')
-  
-");
-while($row = $stage_2_data->fetch(PDO::FETCH_ASSOC)) {
-
-$stage_2_user_id[] = $row['user_id'];
-}
-}
-//stage_2
-
-//stage_3
-foreach ($stage_2_user_id as $key => $stage_2_user_id_value) {
-$stage_3_data = $dbConn->query("SELECT 
-*
-  FROM user   
-  WHERE referral_id IN ('$stage_2_user_id_value')
-  AND level IN ('$level_input')
-");
-while($row = $stage_3_data->fetch(PDO::FETCH_ASSOC)) {
-
-$stage_3_user_id[] = $row['user_id'];
-}
-}
-//stage_3
-
-
-// 1_stages
-if (isset($stage_1_user_id) && !isset($stage_2_user_id) && !isset($stage_3_user_id)) {
-  $total_count =  count($stage_1_user_id);
-}
-
-// 2_stages
-if (isset($stage_1_user_id) && isset($stage_2_user_id) && !isset($stage_3_user_id)) {
-  $total_count =  count($stage_1_user_id) + count($stage_2_user_id);
-}
-
-// 3_stages
-if (isset($stage_1_user_id) && isset($stage_2_user_id) && isset($stage_3_user_id)) {
-  $total_count =  count($stage_1_user_id) + count($stage_2_user_id) + count($stage_3_user_id);
-}
-
-
-
-if ($total_count == 84 && $level < 4) {
-
-        $actual_level = $level_input + 1;
-
-       
-       $dbConn->query("UPDATE `user` 
-       SET 
-       `referral_count` = '$total_count' WHERE user_id IN ('$user_id_input')");
-
-     }
-
-echo "<br>";
-echo "done";
-}
-
-
-
-$user_level_check = $dbConn->query("SELECT
-    *
- FROM user
- WHERE referral_count NOT IN ('$active')
- AND status IN ('$inactive')
-    ");
-
-while($row = $user_level_check->fetch(PDO::FETCH_ASSOC)) {
-    $user_id_input_1 = $row['user_id'];
-    $level_input_1 = $row['level'];
-    referralCount($user_id_input_1,$level_input_1); 
-}
-
-
-*/
 
 ?>

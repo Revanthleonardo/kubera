@@ -33,6 +33,10 @@ while($row = $level_only_update->fetch(PDO::FETCH_ASSOC)) {
        `referral_id` = '$active',
        `status` = '$active',
         `level` = '$actual_level' WHERE user_id IN ('$user_id')");
+
+       $dbConn->query("UPDATE `user` 
+       SET 
+       `referral_id` = '$active' WHERE referral_id IN ('$user_id')");
         
 
         $returnArr = array("api"=>"level_only_update","result"=>"success");
