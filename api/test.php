@@ -17,6 +17,10 @@ $user_payment_check = $dbConn->query("SELECT
     ");
 
 while($row = $user_payment_check->fetch(PDO::FETCH_ASSOC)) {
+    $referral_number_db = $row['referral_number'];
+    if ($referral_number_db == $referral_number) {
+    	// code...
+    }
     $payment_status = $row['payment_status'];
     $level = $row['level'];
 }
@@ -80,7 +84,7 @@ else{
 
 echo json_encode($returnArr);
 
-
+/*
 
 
 function referralCount( $user_id_input , $level_input  ) {
@@ -158,6 +162,7 @@ if ($total_count == 84 && $level < 4) {
 
      }
 
+echo "<br>";
 echo "done";
 }
 
@@ -177,6 +182,6 @@ while($row = $user_level_check->fetch(PDO::FETCH_ASSOC)) {
 }
 
 
-
+*/
 
 ?>

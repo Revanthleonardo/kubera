@@ -78,7 +78,6 @@ echo "user_id  - ".$user_id_input;
 echo "------------";
 echo "referral count  - ".$total_count;
 
-
 if ($total_count == 84 && $level < 4) {
 
         $actual_level = $level_input + 1;
@@ -90,7 +89,6 @@ if ($total_count == 84 && $level < 4) {
 
      }
 
-
 }
 
 
@@ -99,6 +97,7 @@ $user_level_check = $dbConn->query("SELECT
     *
  FROM user
  WHERE referral_count NOT IN ('$active')
+ AND status IN ('$inactive')
     ");
 
 while($row = $user_level_check->fetch(PDO::FETCH_ASSOC)) {
