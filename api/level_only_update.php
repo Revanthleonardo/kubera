@@ -21,18 +21,24 @@ while($row = $level_only_update->fetch(PDO::FETCH_ASSOC)) {
     $referral_count = $row['referral_count'];
     $level = $row['level'];
 
-    //reset stage and referral_count and add level
-    if ($referral_count >= 84 && $level < 4) {
+      if ($referral_count >= 84 && $level < 4) {
 
-    	$actual_level = $level + 1;
+        $actual_level = $level_input + 1;
 
-    	$dbConn->query("UPDATE `user` SET `stage` = '$active',`referral_count` = '$active',
-    	`level` = '$actual_level' WHERE user_id IN ('$user_id')");
+       
+       $dbConn->query("UPDATE `user` 
+       SET 
+       `stage` = '$active',
+       `referral_count` = '$active',
+       `referral_id` = '$active',
+       `status` = '$active',
+        `level` = '$actual_level' WHERE user_id IN ('$user_id')");
+        
 
-    	$returnArr = array("api"=>"level_only_update","result"=>"success");
+        $returnArr = array("api"=>"level_only_update","result"=>"success");
     }
-    else{
-    	$returnArr = array("api"=>"level_only_update","result"=>"error");
+else{
+        $returnArr = array("api"=>"level_only_update","result"=>"error");
     }
 }
 
