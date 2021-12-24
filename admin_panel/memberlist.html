@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style-1.css">
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/b3c4cea948.js" crossorigin="anonymous"></script>
+
+    <div id="head" class="container-fluid">
+        <div class="head">
+            <div class="col-2 p-4">
+                <a href=""><img src="/images/kuberaa.png" alt="Trulli" width="50" height="50" left=-20px></a>
+                <span class="header">Kuberaa</span>
+            </div>
+            <div class="row " style="border-top: 2px solid rgb(206, 201, 201);">
+                <div id="menu" class="col-md-2" style="border-right: 2px solid rgb(206, 201, 201);">
+
+                    <nav class="navbar ">
+                        <div class="container-fluid">
+                            <ul class="navbar-nav h6 ">
+                                <li id="list" class="nav-item " style="line-height: 1.9;">
+                                    <a class="nav-link text-dark " href="/dashboard"><i class="fas fa-tachometer-alt"></i>
+                                        Dashboard</a>
+                                </li>
+                                <li id="list" class="nav-item " style="line-height: 1.9;">
+                                    <a class="nav-link text-dark" href="/memberlist"><i class="fas fa-stream"></i> Member List</a>
+                                </li>
+                                <li id="list" class="nav-item" style="line-height: 1.9;">
+
+                                    <div class="dropdown">
+                                        <a class="nav-link text-dark dropdown-toggle" href="/bookslist"
+                                            data-bs-toggle="dropdown"><i class="fas fa-book"></i> Books</a>
+
+                                        <ul class="dropdown-menu">
+                                            <li><a class=" dropdown-item" href="/addbook">Add Book</a></li>
+                                            <li><a class="dropdown-item" href="/bookslist">Book List</a></li>
+                                            <li><a class="dropdown-item" href="/category">Category</a></li>
+                                            <li><a class="dropdown-item" href="/author">Author</a></li>
+                                        </ul>
+                                    </div>
+                                </li>
+                                <li id="list" class="nav-item " style="line-height: 1.9;">
+                                    <a class="nav-link text-dark" href="/purchases"><i class="fas fa-rupee-sign"></i>
+                                        Purchases</a>
+                                </li>
+                                <li id="list" class="nav-item " style="line-height: 1.9;">
+                                    <a class="nav-link text-dark" href="/messages"><i class="fas fa-comments"></i> Messages</a>
+                                </li>
+                                <li id="list" class="nav-item " style="line-height: 1.9;">
+                                    <a class="nav-link text-dark" href="/notification"><i class="fas fa-bell"></i> Notification</a>
+                                </li>
+                                <li class="nav-item " style="line-height: 1.9;">
+                                    <a id="list" class="nav-link text-dark" href="/reports"><i class="fas fa-chart-line"></i>
+                                        Reports</a>
+                                </li>
+                                <li class="nav-item  " style="line-height: 1.9;">
+                                    <a id="list" class="nav-link text-dark" href="/logout"><i class="fas fa-sign-out-alt"></i>
+                                        Logout</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+
+                </div>
+                <!--Secand Column Start-->
+                <div class="col-md-9" style="margin-left:20px ;">
+                    <div id="fixed" class="container"
+                        style="background-color:#ffffff; margin: 10px; border-radius: 20px  ; ">
+                        <!--First Row Start-->
+                        <h5 style="margin-top: 20px;text-align: center;">Members List</h5>
+                        <table class="table table-bordered table-hover" style="margin-top: 10px;">
+                            <thead>
+                                <tr>
+                                    <th class="bg-dark text-white">Sl No</th>
+                                    <th class="bg-dark text-white">Ref ID</th>
+                                    <th class="bg-dark text-white">Name</th>
+                                    <th class="bg-dark text-white">Mobile</th>
+                                    <th class="bg-dark text-white">Score</th>
+                                    <th class="bg-dark text-white">User Panel</th>
+                                    <th class="bg-dark text-white">Info</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>KU0001</td>
+                                    <td>john</td>
+                                    <td>8220101531</td>
+                                    <td>5/336</td>
+                                    <td align="center">
+                                        <div class="btn btn-success">Go Panel</div>
+                                    </td>
+                                    <td align="center">
+                                        <div class="btn btn-danger">Info</div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                                <tr>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                    <td>--</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <h5>Copywrites@Kuberaa</h5>
+                        </div>
+                        <div class="col" style="text-align: center;">
+                            <h5>Powered by Besttech</h5>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

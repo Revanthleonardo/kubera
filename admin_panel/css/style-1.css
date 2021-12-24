@@ -1,0 +1,39 @@
+.head span {
+
+    font-size: 20px;
+    font-weight: 800;
+    vertical-align: bottom;
+    padding-bottom: 2px;
+    color: darkcyan;
+
+}
+body{
+    background-color: #E7E9EB;
+}
+#head{
+    background-color: #E7E9EB;
+    
+}
+
+#menu{
+    background-color: #E7E9EB;
+    height: 550px;
+}
+
+#chart{
+    margin: 10px;
+
+}
+#icon{
+    font-size: 50px;
+    float: right;
+}
+#icon-1{
+    font-size: 30px;
+    float: right;
+}
+#fixed{
+    height: 480px;
+    overflow: auto;
+}
+
