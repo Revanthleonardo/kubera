@@ -1,44 +1,7 @@
 <?php
 include "../config.php";
 
-//total_user
-$total_user_count_data = $dbConn->query("SELECT 
-COUNT(user_id) as total_user_count
-  FROM user   
-");
-while($row = $total_user_count_data->fetch(PDO::FETCH_ASSOC)) {
-$total_user_count = $row['total_user_count'];
-}
-
-//total_payment
-$total_payment_count_data = $dbConn->query("SELECT 
-COUNT(payment_id) as total_payment_count
-  FROM payment   
-");
-while($row = $total_payment_count_data->fetch(PDO::FETCH_ASSOC)) {
-$total_payment_count = $row['total_payment_count'];
-}
-
-//total_book
-$total_book_count_data = $dbConn->query("SELECT 
-COUNT(book_id) as total_book_count
-  FROM book   
-");
-while($row = $total_book_count_data->fetch(PDO::FETCH_ASSOC)) {
-$total_book_count = $row['total_book_count'];
-}
-
-//total_user_level_1
-$total_user_level_1_count_data = $dbConn->query("SELECT 
-COUNT(user_id) as total_user_level_1_count
-  FROM user 
-  WHERE level IN ('1')  
-");
-while($row = $total_user_level_1_count_data->fetch(PDO::FETCH_ASSOC)) {
-$total_user_level_1_count = $row['total_user_level_1_count'];
-}
-
-
+include "query.php";
 
 ?>
 
@@ -141,7 +104,7 @@ $total_user_level_1_count = $row['total_user_level_1_count'];
                                 style="border-radius: 15px; background-color: #94e8f3">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php  echo $total_user_level_2_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>
@@ -155,7 +118,7 @@ $total_user_level_1_count = $row['total_user_level_1_count'];
                                 style="border-radius: 15px; background-color: #4FE9FE;">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php  echo $total_user_level_3_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>
@@ -169,7 +132,7 @@ $total_user_level_1_count = $row['total_user_level_1_count'];
                                 style="border-radius: 15px; background-color: #00CEEA;">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php  echo $total_user_level_4_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>
@@ -194,7 +157,7 @@ $total_user_level_1_count = $row['total_user_level_1_count'];
                                 style="border-radius: 15px; background-color:#D99C79;">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php echo $total_user_level_1_stage_1_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>

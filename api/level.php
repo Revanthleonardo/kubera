@@ -1,7 +1,7 @@
 <?php
 include '../config.php';
 
-function referralCount( $user_id_input , $level_input  ) {
+function referralCount( $user_id_input , $level_input ,$stage_input ) {
 include '../config.php';
 //stage_1
 $stage_1_data = $dbConn->query("SELECT 
@@ -78,6 +78,7 @@ echo "user_id  - ".$user_id_input;
 echo "------------";
 echo "referral count  - ".$total_count;
 
+//actual_update
 if ($total_count == 84 && $level < 4) {
 
         $actual_level = $level_input + 1;
@@ -88,6 +89,19 @@ if ($total_count == 84 && $level < 4) {
        `referral_count` = '$total_count' WHERE user_id IN ('$user_id_input')");
 
      }
+
+//stage_2
+if ($total_count == 16 && $level < 4) {
+
+        $actual_stage = $stage_input + 1;
+
+       
+       $dbConn->query("UPDATE `user` 
+       SET 
+       `stage` = '$actual_stage' WHERE user_id IN ('$user_id_input')");
+
+     }
+
 
 }
 
@@ -103,7 +117,8 @@ $user_level_check = $dbConn->query("SELECT
 while($row = $user_level_check->fetch(PDO::FETCH_ASSOC)) {
     $user_id = $row['user_id'];
     $level = $row['level'];
-    referralCount($user_id,$level);
+    $stage = $row['stage'];
+    referralCount($user_id,$level,$stage);
     echo "<br>";  
 }
 
