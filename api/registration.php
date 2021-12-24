@@ -7,7 +7,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 
 $name = $data['name'];
 $mobile_number = $data['mobile_number'];
-$password = $data['password'];
+$password = addslashes($data['password']);
 $email = $data['email'];
 $otp = $data['otp'];
 
