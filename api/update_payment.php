@@ -31,7 +31,7 @@ $dbConn->query("UPDATE `user` SET `payment_status` = '$inactive' WHERE user_id I
 }
 else{
 
-    $returnArr = array("api"=>"payment_status","result"=>"payment failed");
+	$returnArr = array("api"=>"payment_status","result"=>"payment failed");
 
 }
 

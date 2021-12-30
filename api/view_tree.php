@@ -11,7 +11,8 @@ if (isset($user_id)){
 $view_tree_user_data = $dbConn->query("SELECT
     user_id,
     name,
-    referral_number
+    referral_number,
+    level
  FROM user
  WHERE referral_id IN ('$user_id')
     ");

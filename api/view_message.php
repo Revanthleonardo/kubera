@@ -4,7 +4,7 @@ require '../config.php';
 //input_data
 $data = json_decode(file_get_contents('php://input'), true);
 
-$user_id = $data['user_id'];
+$user_id = $_GET['user_id'];
 
 //view_message
 $view_message = $dbConn->query("SELECT

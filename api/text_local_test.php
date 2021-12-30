@@ -7,7 +7,7 @@
 	$test = "0";
 
 	// Data for text message. This is the text message data.
-	$sender = "600010"; // This is who the message appears to be from.
+	$sender = "TXTLCL"; // This is who the message appears to be from.
 	$numbers = "918883388393"; // A single number or a comma-seperated list of numbers
 	$message = "This is a test message from the PHP API script.";
 	// 612 chars or less
