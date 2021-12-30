@@ -81,4 +81,37 @@ while($row = $total_user_level_1_stage_1_count_data->fetch(PDO::FETCH_ASSOC)) {
 $total_user_level_1_stage_1_count = $row['total_user_level_1_stage_1_count'];
 }
 
+
+//user_data_for_member_list
+$user_data_for_member_list = $dbConn->query("SELECT
+    *
+ FROM user
+    WHERE user.status IN ('$active') 
+    ");
+
+
+//book_data_for_book_list
+$book_data_for_book_list = $dbConn->query("SELECT
+    *
+ FROM book
+    ");
+
+//category_data_for_category_list
+$category_data_for_category_list = $dbConn->query("SELECT
+    *
+ FROM category
+    ");
+
+//author_data_for_author_list
+$author_data_for_author_list = $dbConn->query("SELECT
+    *
+ FROM author
+    ");
+
+//payment_data_for_payment_list
+$payment_data_for_payment_list = $dbConn->query("SELECT
+    *
+ FROM payment
+    ");
+
 ?>

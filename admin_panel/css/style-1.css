@@ -33,7 +33,14 @@ body{
     float: right;
 }
 #fixed{
-    height: 480px;
+    height: 55vh;
     overflow: auto;
 }
 
+#fixed_add_div{
+    height: 20vh;
+    overflow: auto;
+}
+.table_image{
+    height: 10vh;
+}

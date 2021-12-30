@@ -39,5 +39,6 @@ $hide = "style=\"display: none;\"";
 date_default_timezone_set("Asia/Kolkata");
 $time = date("h:i:sa");
 $date = date("Y/m/d");
+$time_random=time();
 
 ?>
