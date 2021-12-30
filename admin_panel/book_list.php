@@ -3,43 +3,80 @@ include "../config.php";
 
 include "query.php";
 
-$book_list_count = 1;
+$author_list_count = 1;
 
+//add_author_list
+if(isset($_POST['add_author_list'])) { 
 
-//add_book_list
-if(isset($_POST['add_book_list'])) { 
-
-$book_name = $_POST['book_name'];
-$amount = $_POST['amount'];
-$no_of_answers = $_POST['no_of_answers'];
-$question_name_array = $_POST['question_name'];
+$author_name = $_POST['author_name'];
 
   //image
-$file_name = $_FILES['image']['name'];;
+$file_name = basename($_FILES["fileToUpload"]["name"]);
 $target_dir = "../uploads/";
 $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
 $target_file = $target_dir . $time_random .".".$file_extension ;
 
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    $dbConn->query("INSERT INTO `book` (
-    `book_name`,
-    `mobile_number`,
-    `email`,
-    `password`,
-    `referral_number`
+
+    $dbConn->query("INSERT INTO `author` (
+    `author_name`,
+    `author_image`
     ) 
     VALUES (
-    '{$book_name}',
-    '{$mobile_number}',
-    '{$email}',
-    '{$password}',
-    '{$referral_number}'
+    '{$author_name}',
+    '{$target_file}'
     )
     ;");
-}
+
+echo "<script type='text/javascript'>alert('Updated');
+  window.location.href = 'author.php';
+  </script>";
 
 }
 
+}
+
+//update_data
+if(isset($_REQUEST['edit_author'])){
+$author_id = $_REQUEST['edit_author'];
+$update_data_view = $hide;
+
+$edit_author = $dbConn->query("SELECT 
+  * 
+  FROM author 
+  WHERE author_id IN ('$author_id')");
+while($row = $edit_author->fetch(PDO::FETCH_ASSOC)) {
+    $edit_author_name = $row['author_name'];
+    $edit_author_id = $row['author_id'];
+}
+}
+
+
+//update_selected_data
+if(isset($_POST['edit_selected_author'])) { 
+$author_name = $_POST['author_name'];
+$author_id = $_POST['author_id'];
+
+$file_name = basename($_FILES["fileToUpload"]["name"]);
+$target_dir = "../uploads/";
+$file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
+$target_file = $target_dir . $time_random .".".$file_extension ;
+
+    $dbConn->query("UPDATE `author` 
+        SET `author_name` = '$author_name'
+         WHERE author_id IN ('$author_id')");
+
+if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
+    $dbConn->query("UPDATE `author` 
+        SET `author_image` = '$target_file'
+         WHERE author_id IN ('$author_id')");
+}
+
+echo "<script type='text/javascript'>alert('Updated');
+  window.location.href = 'author.php';
+  </script>";
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -70,63 +107,95 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
                 <!--Secand Column Start-->
                 <div class="col-md-9" style="margin-left:20px ;">
-                                        
-<div id="fixed_add_div" class="container"
-                        style="background-color:#ffffff; margin: 10px; border-radius: 20px  ; ">
+
+<!-- add_author -->
+
+<div id="fixed_add_div" class="container" <?php echo $update_data_view; ?>
+                        style="background-color:#ffffff; margin: 10px; border-radius: 20px ; ">
                         <!-- add data -->
                         <table class="table table-bordered table-hover" style="margin-top: 10px;">
                             <thead>
                                 <tr>
-                                    <th class="bg-dark text-white">Book Name</th>
-                                    <th class="bg-dark text-white">Book Image</th>
-                                    <th class="bg-dark text-white">Price</th>
+                                    <th class="bg-dark text-white">Author Name</th>
+                                    <th class="bg-dark text-white">Author Image</th>
                                     <th class="bg-dark text-white">Add</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <form action="" method="POST">
-                                    <td><input type="text" placeholder="book_name" name="book_name" class="form-control" required></td>
-                                    <td><input type="text" placeholder="book_image" name="book_image" class="form-control" required></td>
+                                <form action="" method="POST" enctype = "multipart/form-data">
+                                    <td><input type="text" placeholder="author_name" name="author_name" class="form-control" required></td>
                                     <td><input type="file" name="fileToUpload" class="form-control" required></td>
-                                    <td><button type="submit"  name="add_book_list" class="btn btn-primary">Add</button></td>
+                                    <td><button type="submit"  name="add_author_list" class="btn btn-primary">Add</button></td>
                                 </form>
                             </tbody>
                         </table>
 
 </div>
-<div id="fixed" class="container"
+
+
+<!-- edit_author -->
+
+<div id="fixed_add_div" class="container"
+<?php
+if ($update_data_view === NULL) {
+   echo $hide;
+ } 
+ ?>
                         style="background-color:#ffffff; margin: 10px; border-radius: 20px  ; ">
-                        <!--First Row Start-->
-                        <h5 style="margin-top: 20px;text-align: center;">Members List</h5>
+                        <!-- add data -->
                         <table class="table table-bordered table-hover" style="margin-top: 10px;">
                             <thead>
                                 <tr>
-                                    <th class="bg-dark text-white">Sl No</th>
-                                    <th class="bg-dark text-white">Book Name</th>
-                                    <th class="bg-dark text-white">Book Image</th>
-                                    <th class="bg-dark text-white">Price</th>
+                                    <th class="bg-dark text-white">Author Name</th>
+                                    <th class="bg-dark text-white">Author Image</th>
                                     <th class="bg-dark text-white">Edit</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <form action="" method="POST" enctype = "multipart/form-data">
+                                    <td><input type="text" placeholder="author_name" name="author_name" class="form-control" required 
+                                        value="<?php echo $edit_author_name; ?>"></td>
+                                    <td><input type="file" name="fileToUpload" class="form-control" ></td>
+                                    <input type="hidden" value="<?php echo $edit_author_id; ?>" name="author_id">
+                                    <td><button type="submit"  name="edit_selected_author" class="btn btn-primary">Edit</button></td>
+                                </form>
+                            </tbody>
+                        </table>
+
+</div>
+
+                                        <div id="fixed" class="container"
+                        style="background-color:#ffffff; margin: 10px; border-radius: 20px  ; ">
+                        <!--First Row Start-->
+                        <h5 style="margin-top: 20px;text-align: center;">Author List</h5>
+                        <table class="table table-bordered table-hover" style="margin-top: 10px;">
+                            <thead>
+                                <tr>
+                                    <th class="bg-dark text-white">Sl No</th>
+                                    <th class="bg-dark text-white">Author Name</th>
+                                    <th class="bg-dark text-white">Author Image</th>
+                                    <th class="bg-dark text-white">Edit</th>
+                                    <th class="bg-dark text-white">Delete</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                         <?php
-while($row = $book_data_for_book_list->fetch(PDO::FETCH_ASSOC)) {
-    $book_name = $row['book_name'];
-    $book_image = $row['book_image'];
-    $amount = $row['amount'];
+while($row = $author_data_for_author_list->fetch(PDO::FETCH_ASSOC)) {
+    $author_name = $row['author_name'];
+    $author_image = $row['author_image'];
+    $author_id = $row['author_id'];
 
     echo "
 
     <tr>
-        <td>".$book_list_count++."</td>
-        <td>$book_name</td>
-        <td><img src=\"$book_image\" style=\"height:12vh;\"></td>
-        <td>$amount</td>
+        <td>".$author_list_count++."</td>
+        <td>$author_name</td>
+        <td><img src=\"$author_image\" class=\"table_image\"></td>
         <td align=\"center\">
-            <div class=\"btn btn-success\">Edit</div>
+            <a href=\"author.php?edit_author=$author_id\" class=\"btn btn-success\">Edit</a>
         </td>
         <td align=\"center\">
-            <div class=\"btn btn-danger\">Delete</div>
+            <a href=\"author.php?delete_author=$author_id\" class=\"btn btn-danger\">Delete</a>
         </td>
     </tr>
 

@@ -35,7 +35,7 @@ $member_list_count = 1;
 
                 <!--Secand Column Start-->
                 <div class="col-md-9" style="margin-left:20px ;">
-                                        <div id="fixed" class="container"
+                                        <div id="fixed_single_div" class="container"
                         style="background-color:#ffffff; margin: 10px; border-radius: 20px  ; ">
                         <!--First Row Start-->
                         <h5 style="margin-top: 20px;text-align: center;">Members List</h5>

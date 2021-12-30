@@ -114,4 +114,23 @@ $payment_data_for_payment_list = $dbConn->query("SELECT
  FROM payment
     ");
 
+
+//user_data_for_payment_list
+$user_data_for_payment_list = $dbConn->query("SELECT
+    payment.payment_id_razorpay,
+    user.name,
+    payment.payment_date,
+    payment.user_id,
+    payment.payment_id,
+    payment.book_id,
+    book.book_name
+ FROM payment
+  LEFT JOIN 
+  user ON
+  user.user_id = payment.user_id
+  LEFT JOIN 
+  book ON
+  book.book_id = payment.book_id
+    ");
+
 ?>
