@@ -77,6 +77,20 @@ echo "<script type='text/javascript'>alert('Updated');
   </script>";
 
 }
+
+
+//delete_selected_data
+if(isset($_REQUEST['delete_category'])) { 
+$category_id = $_REQUEST['delete_category'];
+
+   $dbConn->query("DELETE FROM `category` 
+    WHERE category_id IN ('$category_id')");
+
+echo "<script type='text/javascript'>alert('Deleted');
+  window.location.href = 'category.php';
+  </script>";
+
+}
 ?>
 
 <!DOCTYPE html>

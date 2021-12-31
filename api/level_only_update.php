@@ -40,7 +40,6 @@ while($row = $level_only_update->fetch(PDO::FETCH_ASSOC)) {
        `referral_id` = '$active' WHERE referral_id IN ('$user_id')");
        
        
-       echo $actual_level;
         
 
         $returnArr = array("api"=>"level_only_update","result"=>"success");
