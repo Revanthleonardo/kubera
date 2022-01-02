@@ -2,7 +2,7 @@
 include "../config.php";
 
 
-$author_list_count = 1;
+$user_id = $_GET['view_user'];
 
 //send_message
 if(isset($_POST['send_message'])) { 
@@ -33,7 +33,6 @@ header("Location:messages.php?view_user=".$user_id);
 
 //update_data
 if(isset($_REQUEST['view_user'])){
-$user_id = $_REQUEST['view_user'];
 
 //get_user_name
 $get_user_name = $dbConn->query("SELECT
@@ -103,11 +102,11 @@ $user_data_for_message = $dbConn->query("SELECT
     WHERE user.status IN ('$active') 
     ");
 while($row = $user_data_for_message->fetch(PDO::FETCH_ASSOC)) {
-    $user_id = $row['user_id'];
+    $user_id_left_bar = $row['user_id'];
     $name = $row['name'];
                                     echo "
                                     <tr>
-                                    <th><a href=\"messages.php?view_user=$user_id\" class=\"btn\" style=\"float:right;\">$name</a></th>
+                                    <th><a href=\"messages.php?view_user=$user_id_left_bar\" class=\"btn\" style=\"float:right;\">$name</a></th>
                                     </tr>
                                     ";
 
@@ -133,7 +132,6 @@ while($row = $view_message->fetch(PDO::FETCH_ASSOC)) {
     $date = $row['date'];
     $time = $row['time'];
     $sent_by = $row['sent_by'];
-    $user_id = $row['user_id'];
 
 if ($sent_by == "user") {
     echo "
