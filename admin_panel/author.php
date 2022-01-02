@@ -77,6 +77,21 @@ echo "<script type='text/javascript'>alert('Updated');
   </script>";
 
 }
+
+
+
+//delete_selected_data
+if(isset($_REQUEST['delete_author'])) { 
+$author_id = $_REQUEST['delete_author'];
+
+   $dbConn->query("DELETE FROM `author` 
+    WHERE author_id IN ('$author_id')");
+
+echo "<script type='text/javascript'>alert('Deleted');
+  window.location.href = 'author.php';
+  </script>";
+
+}
 ?>
 
 <!DOCTYPE html>

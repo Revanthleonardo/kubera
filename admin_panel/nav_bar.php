@@ -17,7 +17,7 @@
                                             data-bs-toggle="dropdown"><i class="fas fa-book"></i> Books</a>
 
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="book_list.php">Book List</a></li>
+                                            <li><a class="dropdown-item" href="book.php">Book List</a></li>
                                             <li><a class="dropdown-item" href="category.php">Category</a></li>
                                             <li><a class="dropdown-item" href="author.php">Author</a></li>
                                         </ul>
