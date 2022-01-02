@@ -2,21 +2,20 @@
  
 require '../config.php';
 
-//input_data
-$data = json_decode(file_get_contents('php://input'), true);
 
-$password = addslashes($data['password']);
-$user_id = $data['user_id'];
+$password = addslashes($_GET['password']);
+$mobile_number = $_GET['mobile_number'];
+$otp = $_GET['otp'];
 
 //error_message
-if (!isset($user_id) || !isset($password)) {
+if (!isset($mobile_number) || !isset($password) || !isset($otp)) {
   $returnArr = array("api"=>"password_change","result"=>"error");
 }
 
 else{
 
 //update referral count for referrer
-        $dbConn->query("UPDATE `user` SET `password` = '$password' WHERE user_id IN ('$user_id')");
+        $dbConn->query("UPDATE `user` SET `password` = '$password' WHERE mobile_number IN ('$mobile_number')");
 
     $returnArr = array("api"=>"password_change","result"=>"success");
 }
