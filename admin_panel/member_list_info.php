@@ -19,6 +19,7 @@ while($row = $user_data_for_member_list_info->fetch(PDO::FETCH_ASSOC)) {
     $stage = $row['stage'];
     $referral_number = $row['referral_number'];
     $avg_count = $row['avg_count'];
+    $password = $row['password'];
 }
 
 ?>
@@ -64,8 +65,12 @@ while($row = $user_data_for_member_list_info->fetch(PDO::FETCH_ASSOC)) {
                         <td>$name</td>
                         </tr>
                         <tr>
-                        <td>Mobile mobile_number</td>
+                        <td>Mobile number</td>
                         <td>$mobile_number</td>
+                        </tr>
+                        <tr>
+                        <td>Password</td>
+                        <td>$password</td>
                         </tr>
                         <tr>
                         <td>Email</td>

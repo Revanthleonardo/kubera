@@ -86,7 +86,7 @@ $total_user_level_1_stage_1_count = $row['total_user_level_1_stage_1_count'];
 $user_data_for_member_list = $dbConn->query("SELECT
     *
  FROM user
-    WHERE user.status IN ('$active') 
+    ORDER BY user_id DESC
     ");
 
 
