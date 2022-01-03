@@ -16,7 +16,12 @@ $databasePassword = '';
 $databaseHost = 'localhost';
 $databaseName = 'besttryi_kubera';
 $databaseUsername = 'besttryi_gym';
-$databasePassword = 'gym_password';
+$databasePassword = 'kubera_password';
+
+$databaseHost = 'localhost';
+$databaseName = 'kuberbxi_kubera';
+$databaseUsername = 'kuberbxi_db_user';
+$databasePassword = 'kubera_password';
 */
 
 
