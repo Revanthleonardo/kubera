@@ -4,7 +4,7 @@
                         <div class="container-fluid">
                             <ul class="navbar-nav h6 ">
                                 <li id="list" class="nav-item " style="line-height: 1.9;">
-                                    <a class="nav-link text-dark " href="dashboard.php"><i class="fas fa-tachometer-alt"></i>
+                                    <a class="nav-link text-dark " href="index.php"><i class="fas fa-tachometer-alt"></i>
                                         Dashboard</a>
                                 </li>
                                 <li id="list" class="nav-item " style="line-height: 1.9;">
