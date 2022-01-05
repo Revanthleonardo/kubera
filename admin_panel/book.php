@@ -92,6 +92,7 @@ while($row = $edit_book->fetch(PDO::FETCH_ASSOC)) {
     $edit_category_name = $row['category_name'];
     $edit_author_id = $row['author_id'];
     $edit_author_name = $row['author_name'];
+    $edit_amount = $row['amount'];
 }
 }
 
@@ -100,19 +101,37 @@ while($row = $edit_book->fetch(PDO::FETCH_ASSOC)) {
 if(isset($_POST['edit_selected_book'])) { 
 $book_name = $_POST['book_name'];
 $book_id = $_POST['book_id'];
+$author_id = $_POST['author_id'];
+$category_id = $_POST['category_id'];
+$amount = $_POST['amount'];
 
 $file_name = basename($_FILES["fileToUpload"]["name"]);
-$target_dir = "../uploads/";
+$target_dir = "https://gymtech.besttech.in/kubera/uploads/";
 $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
 $target_file = $target_dir . $time_random .".".$file_extension ;
 
+//book_path
+$file_name_for_book_path = basename($_FILES["book_path"]["name"]);
+$target_dir = "https://gymtech.besttech.in/kubera/uploads/";
+$file_extension_for_book_path = pathinfo($file_name_for_book_path, PATHINFO_EXTENSION);
+$target_file_for_book_path = $target_dir . $time_random .".".$file_extension_for_book_path ;
+
     $dbConn->query("UPDATE `book` 
-        SET `book_name` = '$book_name'
+        SET `book_name` = '$book_name',
+        `author_id` = '$author_id',
+        `category_id` = '$category_id',
+        `amount` = '$amount'
          WHERE book_id IN ('$book_id')");
 
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $dbConn->query("UPDATE `book` 
         SET `book_image` = '$target_file'
+         WHERE book_id IN ('$book_id')");
+}
+
+if (move_uploaded_file($_FILES["book_path"]["tmp_name"], $target_file_for_book_path)) {
+    $dbConn->query("UPDATE `book` 
+        SET `book_path` = '$target_file_for_book_path'
          WHERE book_id IN ('$book_id')");
 }
 
@@ -226,6 +245,8 @@ if ($update_data_view === NULL) {
                             <thead>
                                 <tr>
                                     <th class="bg-dark text-white">book Name</th>
+                                    <th class="bg-dark text-white">book pdf</th>
+                                    <th class="bg-dark text-white">book amount</th>
                                     <th class="bg-dark text-white">book Image</th>
                                     <th class="bg-dark text-white">Category</th>
                                     <th class="bg-dark text-white">Author</th>
@@ -236,6 +257,13 @@ if ($update_data_view === NULL) {
                                 <form action="" method="POST" enctype = "multipart/form-data">
                                     <td><input type="text" placeholder="book_name" name="book_name" class="form-control" required 
                                         value="<?php echo $edit_book_name; ?>"></td>
+
+                                    <td><input type="file" name="book_path" class="form-control" ></td>
+
+                                
+                                        <td><input type="number"  name="amount" class="form-control" required 
+                                        value="<?php echo $edit_amount; ?>"></td>
+
                                     <td><input type="file" name="fileToUpload" class="form-control" ></td>
                                     <td>
                         <select class="form-control" name="category_id" required>

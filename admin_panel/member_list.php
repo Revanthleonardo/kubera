@@ -46,6 +46,7 @@ $member_list_count = 1;
                                     <th class="bg-dark text-white">Ref ID</th>
                                     <th class="bg-dark text-white">Name</th>
                                     <th class="bg-dark text-white">Mobile</th>
+                                    <th class="bg-dark text-white">Level</th>
                                     <th class="bg-dark text-white">Score</th>
                                     <th class="bg-dark text-white">User Panel</th>
                                     <th class="bg-dark text-white">Info</th>
@@ -58,7 +59,8 @@ while($row = $user_data_for_member_list->fetch(PDO::FETCH_ASSOC)) {
     $referral_number = $row['referral_number'];
     $name = $row['name'];
     $mobile_number = $row['mobile_number'];
-    $avg_count = $row['avg_count'];  
+    $avg_count = $row['avg_count']; 
+    $level = $row['level'];  
 
     echo "
 
@@ -67,6 +69,7 @@ while($row = $user_data_for_member_list->fetch(PDO::FETCH_ASSOC)) {
         <td>$referral_number</td>
         <td>$name</td>
         <td>$mobile_number</td>
+        <td>$level</td>
         <td>$avg_count/84</td>
         <td align=\"center\">
             <div class=\"btn btn-success\">Go Panel</div>

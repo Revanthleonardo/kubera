@@ -26,7 +26,7 @@ while($row = $user_payment_check->fetch(PDO::FETCH_ASSOC)) {
 if (isset($payment_status) && $referral_number != $referral_number_user) {
 
 
-    //referral_number_user_data
+	//referral_number_user_data
 $referral_number_user_data = $dbConn->query("SELECT
     *
  FROM user
@@ -41,41 +41,41 @@ while($row = $referral_number_user_data->fetch(PDO::FETCH_ASSOC)) {
 
     //if less than 4 insert and update count
     if ($referral_number_user_data_referral_count < 4) {
-        
-        //echo "less than 4 insert and update count";
+    	
+    	//echo "less than 4 insert and update count";
 
-        //update status for user
-        $dbConn->query("UPDATE `user` SET `status` = '$inactive',
-        `referral_id` = '$referral_number_user_data_user_id' WHERE user_id IN ('$user_id')");
+    	//update status for user
+    	$dbConn->query("UPDATE `user` SET `status` = '$inactive',
+    	`referral_id` = '$referral_number_user_data_user_id' WHERE user_id IN ('$user_id')");
 
 
-        //data update
-        $actual_level_referral_count = $referral_number_user_data_referral_count + 1;
+    	//data update
+    	$actual_level_referral_count = $referral_number_user_data_referral_count + 1;
 
-        //update referral count for referrer
-        $dbConn->query("UPDATE `user` SET `referral_count` = '$actual_level_referral_count' WHERE referral_number IN ('$referral_number') AND level IN ('$level')");
+    	//update referral count for referrer
+    	$dbConn->query("UPDATE `user` SET `referral_count` = '$actual_level_referral_count' WHERE referral_number IN ('$referral_number') AND level IN ('$level')");
 
-        //update referral count for the tree
-        $update_data = 1;
+    	//update referral count for the tree
+    	$update_data = 1;
 
-        $returnArr = array("api"=>"update_referral_number","result"=>"success");
+    	$returnArr = array("api"=>"update_referral_number","result"=>"success");
 
     }
     else{
-        //echo "positions filled";
-        $returnArr = array("api"=>"update_referral_number","result"=>"positions filled already try another referral_number");
+    	//echo "positions filled";
+    	$returnArr = array("api"=>"update_referral_number","result"=>"positions filled already try another referral_number");
     }
 
 
 }//query
 
-        
+		
 
 
 }//payment_status
 else{
-        //echo "already updated";
-        $returnArr = array("api"=>"update_referral_number","result"=>"error or already filled");
+    	//echo "already updated";
+    	$returnArr = array("api"=>"update_referral_number","result"=>"error or already filled");
 }
 
 

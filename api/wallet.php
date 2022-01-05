@@ -1,7 +1,10 @@
 <?php 
 require '../config.php';
 
-$user_id = $_GET['user_id'];
+//input_data
+$data = json_decode(file_get_contents('php://input'), true);
+
+$user_id = $data['user_id'];
 
 //wallet_level_data
 $wallet_level_data = $dbConn->query("SELECT
@@ -11,7 +14,7 @@ $wallet_level_data = $dbConn->query("SELECT
     ");
 
 while($row = $wallet_level_data->fetch(PDO::FETCH_ASSOC)) {
-    $level_data_input = $row['level'];
+    $level = $row['level'];
 
     //level 2 - 4
     if ($level == "2") {
@@ -38,7 +41,7 @@ while($row = $wallet_level_data->fetch(PDO::FETCH_ASSOC)) {
 $wallet = $dbConn->query("SELECT
     wallet.reward
  FROM wallet
- WHERE level IN ('$level_data_input')
+ WHERE level IN ('$actual_level')
     ");
 
 while($row = $wallet->fetch(PDO::FETCH_ASSOC)) {
@@ -50,7 +53,7 @@ $returnArr = array("api"=>"wallet","result"=>"success","wallet_api"=>$wallet_api
 }
 else {
     $returnArr = array("api"=>"wallet","result"=>"error");
-}   
+}	
 
 echo json_encode($returnArr);
 

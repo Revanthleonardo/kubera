@@ -5,11 +5,13 @@
 
 	// Config variables. Consult http://api.textlocal.in/docs for more info.
 	$test = "0";
+	$otp = "12345";
 
 	// Data for text message. This is the text message data.
-	$sender = "TXTLCL"; // This is who the message appears to be from.
-	$numbers = "918883388393"; // A single number or a comma-seperated list of numbers
-	$message = "This is a test message from the PHP API script.";
+	$sender = "KUBSOF"; // This is who the message appears to be from.
+	$numbers = "8220101531"; // A single number or a comma-seperated list of numbers
+	
+	$message = rawurlencode('Your OTP is '.$otp.' valid for 3 min - KUBERA');
 	// 612 chars or less
 	// A single number or a comma-seperated list of numbers
 	$message = urlencode($message);
@@ -20,6 +22,6 @@
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 	$result = curl_exec($ch); // This is the result from the API
 	curl_close($ch);
-
+	
 	echo $result;
 ?>
