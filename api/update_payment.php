@@ -27,11 +27,11 @@ $dbConn->query("INSERT INTO `payment` (
 //update payment status
 $dbConn->query("UPDATE `user` SET `payment_status` = '$inactive' WHERE user_id IN ('$user_id')");
 
-    $returnArr = array("api"=>"payment_status","result"=>"payment success");
+    $returnArr = array("api"=>"payment_status","result"=>"success");
 }
 else{
 
-	$returnArr = array("api"=>"payment_status","result"=>"payment failed");
+	$returnArr = array("api"=>"payment_status","result"=>"failed");
 
 }
 

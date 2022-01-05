@@ -106,13 +106,13 @@ $category_id = $_POST['category_id'];
 $amount = $_POST['amount'];
 
 $file_name = basename($_FILES["fileToUpload"]["name"]);
-$target_dir = "https://gymtech.besttech.in/kubera/uploads/";
+$target_dir = "http://kuberaatechnologies.com/uploads/";
 $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
 $target_file = $target_dir . $time_random .".".$file_extension ;
 
 //book_path
 $file_name_for_book_path = basename($_FILES["book_path"]["name"]);
-$target_dir = "https://gymtech.besttech.in/kubera/uploads/";
+$target_dir = "http://kuberaatechnologies.com/uploads/";
 $file_extension_for_book_path = pathinfo($file_name_for_book_path, PATHINFO_EXTENSION);
 $target_file_for_book_path = $target_dir . $time_random .".".$file_extension_for_book_path ;
 
