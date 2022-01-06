@@ -130,7 +130,7 @@ echo "<script type='text/javascript'>alert('Deleted');
 <div id="fixed_add_div" class="container" <?php echo $update_data_view; ?>
                         style="background-color:#ffffff; margin: 10px; border-radius: 20px ; ">
                         <!-- add data -->
-                        <table class="table table-bordered table-hover" id="example" style="margin-top: 10px;">
+                        <table class="table table-bordered table-hover" style="margin-top: 10px;">
                             <thead>
                                 <tr>
                                     <th class="bg-dark text-white">Category Name</th>
@@ -185,7 +185,7 @@ if ($update_data_view === NULL) {
                         style="background-color:#ffffff; margin: 10px; border-radius: 20px  ; ">
                         <!--First Row Start-->
                         <h5 style="margin-top: 20px;text-align: center;">Category List</h5>
-                        <table class="table table-bordered table-hover" style="margin-top: 10px;">
+                        <table class="table table-bordered table-hover" id="example" style="margin-top: 10px;">
                             <thead>
                                 <tr>
                                     <th class="bg-dark text-white">Sl No</th>
