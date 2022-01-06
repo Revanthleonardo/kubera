@@ -90,7 +90,7 @@ $view_message = $dbConn->query("SELECT
 
 <div id="fixed_single_div" class="container col-5" style="background-color:#ffffff; margin: 10px; border-radius: 20px ; ">
                         <!-- add data -->
-                        <table class="table table-bordered table-hover" style="margin-top: 10px;">
+                        <table class="table table-bordered table-hover" id="example" style="margin-top: 10px;">
                             <thead>
                                 <tr>
                                     <?php
@@ -192,5 +192,10 @@ if ($sent_by == "admin") {
 
 
 </body>
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
 
 </html>

@@ -11,10 +11,11 @@ if(isset($_POST['add_category_list'])) {
 $category_name = $_POST['category_name'];
 
   //image
-$file_name = basename($_FILES["fileToUpload"]["name"]);
+$file_name = addslashes(basename($_FILES["fileToUpload"]["name"]));
 $target_dir = "../uploads/";
 $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
-$target_file = $target_dir . $time_random .".".$file_extension ;
+$target_file = $target_dir . $file_name ;
+$base_url = "https://kuberaatechnologies.com/uploads/" . $file_name ;
 
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
@@ -24,7 +25,7 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     ) 
     VALUES (
     '{$category_name}',
-    '{$target_file}'
+    '{$base_url}'
     )
     ;");
 
@@ -57,10 +58,11 @@ if(isset($_POST['edit_selected_category'])) {
 $category_name = $_POST['category_name'];
 $category_id = $_POST['category_id'];
 
-$file_name = basename($_FILES["fileToUpload"]["name"]);
+$file_name = addslashes(basename($_FILES["fileToUpload"]["name"]));
 $target_dir = "../uploads/";
 $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
-$target_file = $target_dir . $time_random .".".$file_extension ;
+$target_file = $target_dir . $file_name ;
+$base_url = "https://kuberaatechnologies.com/uploads/" . $file_name ;
 
     $dbConn->query("UPDATE `category` 
         SET `category_name` = '$category_name'
@@ -68,7 +70,7 @@ $target_file = $target_dir . $time_random .".".$file_extension ;
 
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $dbConn->query("UPDATE `category` 
-        SET `category_image` = '$target_file'
+        SET `category_image` = '$base_url'
          WHERE category_id IN ('$category_id')");
 }
 
@@ -102,6 +104,7 @@ echo "<script type='text/javascript'>alert('Deleted');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kuberaa</title>
 
+
     <?php include"include.php"; ?>
 
 </head>
@@ -127,7 +130,7 @@ echo "<script type='text/javascript'>alert('Deleted');
 <div id="fixed_add_div" class="container" <?php echo $update_data_view; ?>
                         style="background-color:#ffffff; margin: 10px; border-radius: 20px ; ">
                         <!-- add data -->
-                        <table class="table table-bordered table-hover" style="margin-top: 10px;">
+                        <table class="table table-bordered table-hover" id="example" style="margin-top: 10px;">
                             <thead>
                                 <tr>
                                     <th class="bg-dark text-white">Category Name</th>
@@ -209,7 +212,7 @@ while($row = $category_data_for_category_list->fetch(PDO::FETCH_ASSOC)) {
             <a href=\"category.php?edit_category=$category_id\" class=\"btn btn-success\">Edit</a>
         </td>
         <td align=\"center\">
-            <a href=\"category.php?delete_category=$category_id\" class=\"btn btn-danger\">Delete</a>
+            <a href=\"category.php?delete_category=$category_id\" onClick=\"return confirm('Are you sure you want to delete?')\" class=\"btn btn-danger\">Delete</a>
         </td>
     </tr>
 
@@ -242,5 +245,10 @@ while($row = $category_data_for_category_list->fetch(PDO::FETCH_ASSOC)) {
 
 
 </body>
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
 
 </html>

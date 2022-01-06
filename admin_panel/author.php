@@ -11,10 +11,11 @@ if(isset($_POST['add_author_list'])) {
 $author_name = $_POST['author_name'];
 
   //image
-$file_name = basename($_FILES["fileToUpload"]["name"]);
+$file_name = addslashes(basename($_FILES["fileToUpload"]["name"]));
 $target_dir = "../uploads/";
 $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
-$target_file = $target_dir . $time_random .".".$file_extension ;
+$target_file = $target_dir . $file_name ;
+$base_url = "https://kuberaatechnologies.com/uploads/" . $file_name ;
 
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 
@@ -24,7 +25,7 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     ) 
     VALUES (
     '{$author_name}',
-    '{$target_file}'
+    '{$base_url}'
     )
     ;");
 
@@ -57,10 +58,11 @@ if(isset($_POST['edit_selected_author'])) {
 $author_name = $_POST['author_name'];
 $author_id = $_POST['author_id'];
 
-$file_name = basename($_FILES["fileToUpload"]["name"]);
+$file_name = addslashes(basename($_FILES["fileToUpload"]["name"]));
 $target_dir = "../uploads/";
 $file_extension = pathinfo($file_name, PATHINFO_EXTENSION);
-$target_file = $target_dir . $time_random .".".$file_extension ;
+$target_file = $target_dir . $file_name ;
+$base_url = "https://kuberaatechnologies.com/uploads/" . $file_name ;
 
     $dbConn->query("UPDATE `author` 
         SET `author_name` = '$author_name'
@@ -68,7 +70,7 @@ $target_file = $target_dir . $time_random .".".$file_extension ;
 
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
     $dbConn->query("UPDATE `author` 
-        SET `author_image` = '$target_file'
+        SET `author_image` = '$base_url'
          WHERE author_id IN ('$author_id')");
 }
 
@@ -183,7 +185,7 @@ if ($update_data_view === NULL) {
                         style="background-color:#ffffff; margin: 10px; border-radius: 20px  ; ">
                         <!--First Row Start-->
                         <h5 style="margin-top: 20px;text-align: center;">Author List</h5>
-                        <table class="table table-bordered table-hover" style="margin-top: 10px;">
+                        <table class="table table-bordered table-hover" id="example" style="margin-top: 10px;">
                             <thead>
                                 <tr>
                                     <th class="bg-dark text-white">Sl No</th>
@@ -210,7 +212,7 @@ while($row = $author_data_for_author_list->fetch(PDO::FETCH_ASSOC)) {
             <a href=\"author.php?edit_author=$author_id\" class=\"btn btn-success\">Edit</a>
         </td>
         <td align=\"center\">
-            <a href=\"author.php?delete_author=$author_id\" class=\"btn btn-danger\">Delete</a>
+            <a href=\"author.php?delete_author=$author_id\" onClick=\"return confirm('Are you sure you want to delete?')\" class=\"btn btn-danger\">Delete</a>
         </td>
     </tr>
 
@@ -243,5 +245,10 @@ while($row = $author_data_for_author_list->fetch(PDO::FETCH_ASSOC)) {
 
 
 </body>
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
 
 </html>

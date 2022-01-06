@@ -14,6 +14,10 @@ $member_list_count = 1;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/datatables.min.css"/>
+ 
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/jq-3.6.0/dt-1.11.3/datatables.min.js"></script>
+
     <title>Kuberaa</title>
 
     <?php include"include.php"; ?>
@@ -39,7 +43,7 @@ $member_list_count = 1;
                         style="background-color:#ffffff; margin: 10px; border-radius: 20px  ; ">
                         <!--First Row Start-->
                         <h5 style="margin-top: 20px;text-align: center;">Members List</h5>
-                        <table class="table table-bordered table-hover" style="margin-top: 10px;">
+                        <table id="example" class="table table-bordered table-hover" style="margin-top: 10px;">
                             <thead>
                                 <tr>
                                     <th class="bg-dark text-white">Sl No</th>
@@ -108,5 +112,10 @@ while($row = $user_data_for_member_list->fetch(PDO::FETCH_ASSOC)) {
 
 
 </body>
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
 
 </html>

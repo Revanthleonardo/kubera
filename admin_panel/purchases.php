@@ -39,7 +39,7 @@ $payment_list_count = 1;
                         style="background-color:#ffffff; margin: 10px; border-radius: 20px  ; ">
                         <!--First Row Start-->
                         <h5 style="margin-top: 20px;text-align: center;">Purchases</h5>
-                        <table class="table table-bordered table-hover" style="margin-top: 10px;">
+                        <table class="table table-bordered table-hover" id="example" style="margin-top: 10px;">
                             <thead>
                                 <tr>
                                     <th class="bg-dark text-white">Sl No</th>
@@ -103,5 +103,10 @@ while($row = $user_data_for_payment_list->fetch(PDO::FETCH_ASSOC)) {
 
 
 </body>
+<script>
+    $(document).ready(function() {
+    $('#example').DataTable();
+} );
+</script>
 
 </html>
