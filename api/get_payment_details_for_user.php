@@ -2,17 +2,14 @@
  
 require '../config.php';
 
-//input_data
-$data = json_decode(file_get_contents('php://input'), true);
 
-$user_id = $data['user_id'];
+$user_id = $_GET['user_id'];
 
 //get_payment_details_for_user
 $get_payment_details_for_user = $dbConn->query("SELECT
     payment.payment_id,
     payment.payment_date,
-    payment.payment_id_instamojo,
-    payment.payment_request_id_instamojo,
+    payment.payment_id_razorpay,
     book.book_id,
     book.book_name,
     book.book_image,

@@ -2,6 +2,9 @@
  
 require '../config.php';
 
+date_default_timezone_set("Asia/Kolkata");
+$time = date("hi");
+
 //input_data
 $data = json_decode(file_get_contents('php://input'), true);
 
@@ -11,6 +14,9 @@ $password = $data['password'];
 $email = $data['email'];
 $otp = $data['otp'];
 
+$mobile_number_sub = substr($mobile_number, 7, 9); //last 3 digit
+$otp_decode = abs($mobile_number_sub - $otp) ; //otp_decode
+$otp_check = abs($otp_decode - $time);
 
 
 //duplicate_mobile_number
@@ -36,14 +42,17 @@ $user_id = $max_user_id + 1;
 $random_number = rand(0,99999999);
 $referral_number = str_pad($user_id, 8, '0', STR_PAD_LEFT)."".str_pad($random_number, 8, '0', STR_PAD_LEFT);
 
+
+
 //error_message
 if (isset($duplicate_data) || !isset($name) || !isset($mobile_number)
     || !isset($password) || !isset($email) || !isset($otp)) {
   $returnArr = array("api"=>"registration","result"=>"error");
 }
 
-//register_user
-else{
+//for 3 min
+//valid
+if ($otp_check < 4){
 
 //inserting_user
   $dbConn->query("INSERT INTO `user` (
