@@ -13,6 +13,8 @@ $time = date("hi");
 $mobile_number_sub = substr($mobile_number, 7, 9); //last 3 digit
 $actual = $mobile_number_sub + $time; //adding time
 
+$otp = str_pad($actual, 4, '0', STR_PAD_LEFT);
+
 
 	// Authorisation details.
 	$username = "kuberaatechnologies@gmail.com";
@@ -26,7 +28,7 @@ $actual = $mobile_number_sub + $time; //adding time
 	$sender = "KUBSOF"; // This is who the message appears to be from.
 	$numbers = $mobile_number; // A single number or a comma-seperated list of numbers
 	
-	$message = rawurlencode('Your OTP is '.$actual.' valid for 3 min - KUBERA');
+	$message = rawurlencode('Your OTP is '.$otp.' valid for 3 min - KUBERA');
 	// 612 chars or less
 	// A single number or a comma-seperated list of numbers
 	$message = urlencode($message);
