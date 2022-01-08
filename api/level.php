@@ -83,13 +83,10 @@ $dbConn->query("UPDATE `user`
        `avg_count` = '$total_count' WHERE user_id IN ('$user_id_input')");
 
 if ($total_count == 84 && $level < 4) {
-
-        $actual_level = $level_input + 1;
-
        
        $dbConn->query("UPDATE `user` 
        SET 
-       `referral_count` = '$total_count' WHERE user_id IN ('$user_id_input')");
+       `level_update_count` = '$total_count' WHERE user_id IN ('$user_id_input')");
 
      }
 
