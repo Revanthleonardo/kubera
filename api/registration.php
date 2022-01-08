@@ -39,9 +39,7 @@ while($row = $user_id_count->fetch(PDO::FETCH_ASSOC)) {
 }
 
 $user_id = $max_user_id + 1;
-$random_number = rand(0,99999999);
-$referral_number = str_pad($user_id, 8, '0', STR_PAD_LEFT)."".str_pad($random_number, 8, '0', STR_PAD_LEFT);
-
+$referral_number = "AAA".str_pad($user_id, 4, '0', STR_PAD_LEFT);
 
 
 //error_message
