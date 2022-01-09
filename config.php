@@ -41,9 +41,6 @@ error_reporting(0);
 $active = 0;
 $inactive = 1;
 $hide = "style=\"display: none;\"";
-date_default_timezone_set("Asia/Kolkata");
-$time = date("h:i:sa");
-$date = date("Y/m/d");
-$time_random=time();
+
 
 ?>
