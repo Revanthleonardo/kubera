@@ -80,13 +80,13 @@ echo "referral count  - ".$total_count;
 
 $dbConn->query("UPDATE `user` 
        SET 
-       `avg_count` = '$total_count' WHERE user_id IN ('$user_id_input')");
+       `avg_count` = '$total_count' WHERE user_id IN ('$user_id_input') AND level_update_count_status IN ('$active')");
 
 if ($total_count == 84 && $level < 4) {
        
        $dbConn->query("UPDATE `user` 
        SET 
-       `level_update_count` = '$total_count' WHERE user_id IN ('$user_id_input')");
+       `level_update_count` = '$total_count' WHERE user_id IN ('$user_id_input') AND level_update_count_status IN ('$active')");
 
      }
 

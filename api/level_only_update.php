@@ -32,7 +32,9 @@ while($row = $level_only_update->fetch(PDO::FETCH_ASSOC)) {
         
         //reset level_update_count so it won't update again
         $dbConn->query("UPDATE `user` 
-       SET `level_update_count` = '$active' WHERE user_id IN ('$user_id')");
+       SET `level_update_count` = '$active',
+       `level_update_count_status` = '$inactive'
+       WHERE user_id IN ('$user_id')");
 
         //update new level to new user
     $dbConn->query("INSERT INTO `user` (
