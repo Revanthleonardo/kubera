@@ -48,6 +48,7 @@ if (isset($duplicate_data) || !isset($name) || !isset($mobile_number)
     || !isset($password) || !isset($email) || !isset($otp)) {
   $returnArr = array("api"=>"registration","result"=>"error");
 }
+else{
 
 //for 3 min
 //valid
@@ -74,6 +75,11 @@ if ($otp_check < 4){
 
 
     $returnArr = array("api"=>"registration","result"=>"success");
+}
+else{
+    $returnArr = array("api"=>"registration","result"=>"error");
+}
+
 }
 
 
