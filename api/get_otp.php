@@ -22,7 +22,6 @@ $otp = str_pad($actual, 4, '0', STR_PAD_LEFT);
 
 	// Config variables. Consult http://api.textlocal.in/docs for more info.
 	$test = "0";
-	$otp = "12345";
 
 	// Data for text message. This is the text message data.
 	$sender = "KUBSOF"; // This is who the message appears to be from.
