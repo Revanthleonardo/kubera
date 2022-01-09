@@ -39,9 +39,8 @@ while($row = $referral_number_user_data->fetch(PDO::FETCH_ASSOC)) {
     $referral_number_user_data_referral_count = $row['referral_count'];
     $referral_number_user_data_user_id = $row['user_id'];
 
-    //level_1 4
     //if less than 4 insert and update count
-    if ($referral_number_user_data_referral_count < 4 && $level == 1) {
+    if ($referral_number_user_data_referral_count < 4) {
     	
     	//echo "less than 4 insert and update count";
 
@@ -56,75 +55,11 @@ while($row = $referral_number_user_data->fetch(PDO::FETCH_ASSOC)) {
     	//update referral count for referrer
     	$dbConn->query("UPDATE `user` SET `referral_count` = '$actual_level_referral_count' WHERE referral_number IN ('$referral_number') AND level IN ('$level')");
 
-    	//update referral count for the tree
-    	$update_data = 1;
 
     	$returnArr = array("api"=>"update_referral_number","result"=>"success");
 
     }
-    //level_2 4+4
-    //if less than 4 insert and update count
-    elseif ($referral_number_user_data_referral_count < 8 && $level == 2) {
-        
-        //echo "less than 4 insert and update count";
-
-        //update status for user
-        $dbConn->query("UPDATE `user` SET `status` = '$inactive',
-        `referral_id` = '$referral_number_user_data_user_id' WHERE user_id IN ('$user_id')");
-
-
-        //data update
-        $actual_level_referral_count = $referral_number_user_data_referral_count + 1;
-
-        //update referral count for referrer
-        $dbConn->query("UPDATE `user` SET `referral_count` = '$actual_level_referral_count' WHERE referral_number IN ('$referral_number') AND level IN ('$level')");
-
-
-        $returnArr = array("api"=>"update_referral_number","result"=>"success");
-
-    }
-    //level_2 4+4+4
-    //if less than 4 insert and update count
-    elseif ($referral_number_user_data_referral_count < 12 && $level == 3) {
-        
-        //echo "less than 4 insert and update count";
-
-        //update status for user
-        $dbConn->query("UPDATE `user` SET `status` = '$inactive',
-        `referral_id` = '$referral_number_user_data_user_id' WHERE user_id IN ('$user_id')");
-
-
-        //data update
-        $actual_level_referral_count = $referral_number_user_data_referral_count + 1;
-
-        //update referral count for referrer
-        $dbConn->query("UPDATE `user` SET `referral_count` = '$actual_level_referral_count' WHERE referral_number IN ('$referral_number') AND level IN ('$level')");
-
-
-        $returnArr = array("api"=>"update_referral_number","result"=>"success");
-
-    }
-    //level_2 4+4+4+4
-    //if less than 4 insert and update count
-    elseif ($referral_number_user_data_referral_count < 16 && $level == 4) {
-        
-        //echo "less than 4 insert and update count";
-
-        //update status for user
-        $dbConn->query("UPDATE `user` SET `status` = '$inactive',
-        `referral_id` = '$referral_number_user_data_user_id' WHERE user_id IN ('$user_id')");
-
-
-        //data update
-        $actual_level_referral_count = $referral_number_user_data_referral_count + 1;
-
-        //update referral count for referrer
-        $dbConn->query("UPDATE `user` SET `referral_count` = '$actual_level_referral_count' WHERE referral_number IN ('$referral_number') AND level IN ('$level')");
-
-
-        $returnArr = array("api"=>"update_referral_number","result"=>"success");
-
-    }
+    
     else{
     	//echo "positions filled";
     	$returnArr = array("api"=>"update_referral_number","result"=>"positions filled already try another referral_number");

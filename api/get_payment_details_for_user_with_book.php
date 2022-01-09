@@ -8,11 +8,23 @@ $data = json_decode(file_get_contents('php://input'), true);
 $user_id = $data['user_id'];
 $book_id = $data['book_id'];
 
+//user_id_input
+//mobile_number_data
+$mobile_number_data = $dbConn->query("SELECT
+    mobile_number
+ FROM user
+ WHERE user_id IN ('$user_id')
+ LIMIT 1
+    ");
+while($row = $mobile_number_data->fetch(PDO::FETCH_ASSOC)) {
+    $mobile_number = $row['mobile_number'];
+}
+
 //get_payment_details_for_user_with_book
 $get_payment_details_for_user_with_book = $dbConn->query("SELECT
     *
  FROM payment
- WHERE user_id IN ('$user_id')
+ WHERE mobile_number IN ('$mobile_number')
  AND book_id IN ('$book_id')
     ");
 

@@ -20,17 +20,18 @@ $user_login = $dbConn->query("SELECT
  FROM user
  WHERE mobile_number IN ('$mobile_number')
  AND password IN ('$password')
+ ORDER BY DESC user_id
+ LIMIT 1
     ");
 while($row = $user_login->fetch(PDO::FETCH_ASSOC)) {
     $user_login_api = $row;
-    $user_id = $row['user_id'];
 }
 
 //payment_data
 $payment_data = $dbConn->query("SELECT
     *
  FROM payment
- WHERE user_id IN ('$user_id')
+ WHERE mobile_number IN ('$mobile_number')
  LIMIT 1
     ");
 while($row = $payment_data->fetch(PDO::FETCH_ASSOC)) {
@@ -43,7 +44,7 @@ if (isset($payment_id)) {
 $referral_number_data = $dbConn->query("SELECT
     referral_number
  FROM user
- WHERE user_id IN ('$user_id')
+ WHERE mobile_number IN ('$mobile_number')
  LIMIT 1
     ");
 while($row = $referral_number_data->fetch(PDO::FETCH_ASSOC)) {

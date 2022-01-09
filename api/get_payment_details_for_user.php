@@ -5,6 +5,18 @@ require '../config.php';
 
 $user_id = $_GET['user_id'];
 
+//user_id_input
+//mobile_number_data
+$mobile_number_data = $dbConn->query("SELECT
+    mobile_number
+ FROM user
+ WHERE user_id IN ('$user_id')
+ LIMIT 1
+    ");
+while($row = $mobile_number_data->fetch(PDO::FETCH_ASSOC)) {
+    $mobile_number = $row['mobile_number'];
+}
+
 //get_payment_details_for_user
 $get_payment_details_for_user = $dbConn->query("SELECT
     payment.payment_id,
@@ -32,7 +44,7 @@ $get_payment_details_for_user = $dbConn->query("SELECT
   LEFT JOIN 
   category ON
   category.category_id = book.category_id
- WHERE payment.user_id IN ('$user_id')
+ WHERE payment.mobile_number IN ('$mobile_number')
     ");
 
 while($row = $get_payment_details_for_user->fetch(PDO::FETCH_ASSOC)) {

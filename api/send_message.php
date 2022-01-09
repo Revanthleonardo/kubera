@@ -6,19 +6,30 @@ $user_id = $_GET['user_id'];
 $message = addslashes($_GET['message']);
 $sent_by = "user";
 
+//user_id_input
+//mobile_number_data
+$mobile_number_data = $dbConn->query("SELECT
+    mobile_number
+ FROM user
+ WHERE user_id IN ('$user_id')
+ LIMIT 1
+    ");
+while($row = $mobile_number_data->fetch(PDO::FETCH_ASSOC)) {
+    $mobile_number = $row['mobile_number'];
+}
 
-if (isset($user_id) && isset($message)) {
+if (isset($mobile_number) && isset($message)) {
 
 //inserting_user
   $dbConn->query("INSERT INTO `message` (
-    `user_id`,
+    `mobile_number`,
     `message`,
     `sent_by`,
     `date`,
     `time`
     ) 
     VALUES (
-    '{$user_id}',
+    '{$mobile_number}',
     '{$message}',
     '{$sent_by}',
     '{$date}',

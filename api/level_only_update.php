@@ -24,13 +24,16 @@ while($row = $level_only_update->fetch(PDO::FETCH_ASSOC)) {
       if ($level_update_count >= 84 && $level < 4) {
 
         $actual_level = $level + 1;
-
+/*
        
        $dbConn->query("UPDATE `user` 
        SET 
        `level_update_count` = '$active',
        `status` = '$active',
         `level` = '$actual_level' WHERE user_id IN ('$user_id')");
+
+*/
+        //update new level to new user
         
 
         $returnArr = array("api"=>"level_only_update","result"=>"success");
