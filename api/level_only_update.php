@@ -45,7 +45,8 @@ while($row = $level_only_update->fetch(PDO::FETCH_ASSOC)) {
     `registered_date`,
     `referral_number`,
     `payment_status`,
-    `level`
+    `level`,
+    `status`
     ) 
     VALUES (
     '{$name}',
@@ -55,7 +56,8 @@ while($row = $level_only_update->fetch(PDO::FETCH_ASSOC)) {
     '{$registered_date}',
     '{$referral_number}',
     '{$inactive}',
-    '{$actual_level}'
+    '{$actual_level}',
+    '{$inactive}'
     )
     ;");
         
