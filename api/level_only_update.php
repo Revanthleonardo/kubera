@@ -17,23 +17,45 @@ $level_only_update = $dbConn->query("SELECT
     ");
 
 while($row = $level_only_update->fetch(PDO::FETCH_ASSOC)) {
-    $stage = $row['stage'];
     $level_update_count = $row['level_update_count'];
     $level = $row['level'];
+    $name = $row['name'];
+    $mobile_number = $row['mobile_number'];
+    $email = $row['email'];
+    $password = $row['password'];
+    $registered_date = $row['registered_date'];
+    $referral_number = $row['referral_number'];
 
       if ($level_update_count >= 84 && $level < 4) {
 
         $actual_level = $level + 1;
-/*
-       
-       $dbConn->query("UPDATE `user` 
-       SET 
-       `level_update_count` = '$active',
-       `status` = '$active',
-        `level` = '$actual_level' WHERE user_id IN ('$user_id')");
+        
+        //reset level_update_count so it won't update again
+        $dbConn->query("UPDATE `user` 
+       SET `level_update_count` = '$active' WHERE user_id IN ('$user_id')");
 
-*/
         //update new level to new user
+    $dbConn->query("INSERT INTO `user` (
+    `name`,
+    `mobile_number`,
+    `email`,
+    `password`,
+    `registered_date`,
+    `referral_number`,
+    `payment_status`,
+    `level`
+    ) 
+    VALUES (
+    '{$name}',
+    '{$mobile_number}',
+    '{$email}',
+    '{$password}',
+    '{$registered_date}',
+    '{$referral_number}',
+    '{$inactive}',
+    '{$actual_level}'
+    )
+    ;");
         
 
         $returnArr = array("api"=>"level_only_update","result"=>"success");
