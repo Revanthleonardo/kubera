@@ -20,7 +20,7 @@ $view_avg_count = $dbConn->query("SELECT
     avg_count
  FROM user
  WHERE mobile_number IN ('$mobile_number')
- ORDER BY `user_id` DESC
+ ORDER BY user_id DESC
  LIMIT 1
     ");
 
