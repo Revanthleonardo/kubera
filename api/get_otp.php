@@ -41,7 +41,7 @@ $otp = str_pad($actual, 4, '0', STR_PAD_LEFT);
 
 //if mobile_number and password match
 if (isset($mobile_number)) {
-    $returnArr = array("api"=>"get_otp","result"=>"success","otp"=>$actual,"text_local"=>$result);
+    $returnArr = array("api"=>"get_otp","result"=>"success","otp"=>$otp,"text_local"=>$result);
 }
 else{
     $returnArr = array("api"=>"get_otp","result"=>"error","text_local"=>$result);
