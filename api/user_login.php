@@ -20,7 +20,7 @@ $user_login = $dbConn->query("SELECT
  FROM user
  WHERE mobile_number IN ('$mobile_number')
  AND password IN ('$password')
- ORDER BY DESC user_id
+ ORDER BY user_id DESC
  LIMIT 1
     ");
 while($row = $user_login->fetch(PDO::FETCH_ASSOC)) {

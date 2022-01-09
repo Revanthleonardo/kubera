@@ -24,6 +24,7 @@ $duplicate_mobile_number = $dbConn->query("SELECT
     *
  FROM user
  WHERE mobile_number IN ('$mobile_number')
+ LIMIT 1
     ");
 while($row = $duplicate_mobile_number->fetch(PDO::FETCH_ASSOC)) {
     $duplicate_data = "1";

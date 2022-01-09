@@ -24,7 +24,7 @@ $wallet = $dbConn->query("SELECT
   wallet ON
   user.level = wallet.level
  WHERE user.mobile_number IN ('$mobile_number')
- ORDER BY DESC user.user_id
+ ORDER BY user.user_id DESC
  LIMIT 1
     ");
 
