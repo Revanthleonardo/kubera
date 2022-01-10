@@ -33,7 +33,7 @@ include "query.php";
 
                 <!--Secand Column Start-->
                 <div class="col-md-9" style="margin-left:20px ;">
-                    <div id="fixed" class="container"
+                    <div id="fixed_single_div" class="container"
                         style="background-color:#ffffff; margin: 10px; border-radius: 20px  ; ">
                         <!--First Row Start-->
                         <div class="row" style="margin-bottom:30px ;">

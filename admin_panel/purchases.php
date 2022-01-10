@@ -46,8 +46,6 @@ $payment_list_count = 1;
                                     <th class="bg-dark text-white">P ID</th>
                                     <th class="bg-dark text-white">Name</th>
                                     <th class="bg-dark text-white">PU Date</th>
-                                    <th class="bg-dark text-white">Invoices</th>
-                                    <th class="bg-dark text-white">Print</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -66,12 +64,6 @@ while($row = $user_data_for_payment_list->fetch(PDO::FETCH_ASSOC)) {
         <td>$payment_id_razorpay</td>
         <td>$name</td>
         <td>$payment_date</td>
-        <td align=\"center\">
-            <div class=\"btn btn-success\">Invoices</div>
-        </td>
-        <td align=\"center\">
-            <div class=\"btn btn-danger\">Print</div>
-        </td>
     </tr>
 
     ";
