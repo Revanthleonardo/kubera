@@ -171,7 +171,7 @@ include "query.php";
                                 style="border-radius: 15px; background-color: #F26A4B">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php echo $total_user_level_1_stage_2_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>
@@ -185,7 +185,7 @@ include "query.php";
                                 style="border-radius: 15px; background-color: #F23005;">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php echo $total_user_level_1_stage_3_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>
@@ -206,7 +206,7 @@ include "query.php";
                                 style="border-radius: 15px; background-color:#F2D785;">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php echo $total_user_level_2_stage_1_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>
@@ -220,7 +220,7 @@ include "query.php";
                                 style="border-radius: 15px; background-color: #F2BC1B">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php echo $total_user_level_2_stage_2_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>
@@ -234,7 +234,7 @@ include "query.php";
                                 style="border-radius: 15px; background-color: #F2CE16;">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php echo $total_user_level_2_stage_3_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>
@@ -255,7 +255,7 @@ include "query.php";
                                 style="border-radius: 15px; background-color:#C5CED9;">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php echo $total_user_level_3_stage_1_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>
@@ -269,7 +269,7 @@ include "query.php";
                                 style="border-radius: 15px; background-color: #8a81ac">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php echo $total_user_level_3_stage_2_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>
@@ -283,7 +283,7 @@ include "query.php";
                                 style="border-radius: 15px; background-color: #B2A0D9;">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php echo $total_user_level_3_stage_3_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>
@@ -304,7 +304,7 @@ include "query.php";
                                 style="border-radius: 15px; background-color:#eb688f;">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php echo $total_user_level_4_stage_1_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>
@@ -318,7 +318,7 @@ include "query.php";
                                 style="border-radius: 15px; background-color: #db3a6b">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php echo $total_user_level_4_stage_2_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>
@@ -332,7 +332,7 @@ include "query.php";
                                 style="border-radius: 15px; background-color: #ff034e;">
                                 <div class="row text-dark">
                                     <div class="col-6">
-                                        <h2>1</h2>
+                                        <h2><?php echo $total_user_level_4_stage_3_count; ?></h2>
                                     </div>
                                     <div class="col-6">
                                         <i id="icon-1" class="fas fa-users"></i>
