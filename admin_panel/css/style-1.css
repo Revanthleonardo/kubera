@@ -41,6 +41,11 @@ body{
     overflow: auto;
 }
 
+#message_div{
+    height: 70vh;
+    overflow: auto;
+}
+
 #fixed_add_div{
     height: 20vh;
     overflow: auto;

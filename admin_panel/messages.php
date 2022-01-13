@@ -17,14 +17,16 @@ $sent_by = "admin";
     `message`,
     `sent_by`,
     `date`,
-    `time`
+    `time`,
+    `notification`
     ) 
     VALUES (
     '{$mobile_number}',
     '{$message}',
     '{$sent_by}',
     '{$date}',
-    '{$time}'
+    '{$time}',
+    '{$active}'
     )
     ;");
 
@@ -51,6 +53,11 @@ $view_message = $dbConn->query("SELECT
  FROM message
  WHERE mobile_number IN ('$mobile_number')
     ");
+
+//reset notification
+        $dbConn->query("UPDATE `message` 
+       SET `notification` = '$active'
+       WHERE mobile_number IN ('$mobile_number')");
 
 }
 
@@ -97,18 +104,40 @@ $view_message = $dbConn->query("SELECT
 
                                     //user_data_for_member_list
 $user_data_for_message = $dbConn->query("SELECT
-    *
+ user.mobile_number,
+ user.name,
+ message.notification
  FROM user
-    WHERE user.status IN ('$active') 
+ LEFT JOIN 
+  message ON
+  message.mobile_number = user.mobile_number
+    WHERE user.status IN ('$active')
+    GROUP BY user.mobile_number 
+    ORDER BY message.notification DESC
+
     ");
 while($row = $user_data_for_message->fetch(PDO::FETCH_ASSOC)) {
     $mobile_number_left_bar = $row['mobile_number'];
     $name = $row['name'];
-                                    echo "
-                                    <tr>
-                                    <th><a href=\"messages.php?view_user=$mobile_number_left_bar\" class=\"btn\" style=\"float:right;\">$name</a></th>
-                                    </tr>
-                                    ";
+    $notification = $row['notification'];
+
+    if ($notification == "1") {
+        echo "
+            <tr>
+            <th><a href=\"messages.php?view_user=$mobile_number_left_bar\" class=\"btn btn-primary\" style=\"float:right;\">$name</a></th>
+            </tr>
+            ";
+    }
+    else{
+         echo "
+            <tr>
+            <th><a href=\"messages.php?view_user=$mobile_number_left_bar\" class=\"btn\" style=\"float:right;\">$name</a></th>
+            </tr>
+            ";
+
+    }
+
+                                    
 
     }
                                     ?>
@@ -120,9 +149,11 @@ while($row = $user_data_for_message->fetch(PDO::FETCH_ASSOC)) {
 
 <!-- message div -->
 
-<div id="fixed_single_div" class="container col-6" style="background-color:#ffffff; margin: 10px; border-radius: 20px ; ">
+<div id="message_div" class="container col-6" style="background-color:#ffffff; margin: 10px; border-radius: 20px ;">
+    <div class="row">
     <h1 style="float:right;"><?php echo $user_name; ?></h1>
-
+    
+<div class="container" style="height: 50vh; overflow: auto;">
 <table class="table table-borderless table-hover" style="margin-top: 10px;">
 <?php
 
@@ -152,14 +183,15 @@ if ($sent_by == "admin") {
 
     ";
 }
+echo "<tr><th><th></tr>";
     
 }
 
 ?>
 </table>
-
-<table style="position: absolute;
-    bottom: 15%;">
+</div>
+<div class="container" style="height: 10vh;">
+<table>
     <form action="" method="POST">
     <tr>
         <td class="col-10"><input type="text" class="form-control" name="message" required></td>
@@ -169,7 +201,7 @@ if ($sent_by == "admin") {
     </form>
 </table>
 </div>
-
+                </div>
                 </div>
 
                     <div class="row">
