@@ -79,7 +79,7 @@ $total_user_level_4_count = $row['total_user_level_4_count'];
 $total_user_level_1_stage_1_count_data = $dbConn->query("SELECT 
 COUNT(user_id) as total_user_level_1_stage_1_count
   FROM user 
-  WHERE referral_count BETWEEN ('1') AND ('4')  
+  WHERE avg_count BETWEEN ('1') AND ('4')  
   AND level IN ('1')
   AND level_update_count_status IN ('$active')
 ");
@@ -116,7 +116,7 @@ $total_user_level_1_stage_3_count = $row['total_user_level_1_stage_3_count'];
 $total_user_level_2_stage_1_count_data = $dbConn->query("SELECT 
 COUNT(user_id) as total_user_level_2_stage_1_count
   FROM user 
-  WHERE referral_count BETWEEN ('1') AND ('4')  
+  WHERE avg_count BETWEEN ('1') AND ('4')  
   AND level IN ('2')
   AND level_update_count_status IN ('$active')
 ");
@@ -153,7 +153,7 @@ $total_user_level_2_stage_3_count = $row['total_user_level_2_stage_3_count'];
 $total_user_level_3_stage_1_count_data = $dbConn->query("SELECT 
 COUNT(user_id) as total_user_level_3_stage_1_count
   FROM user 
-  WHERE referral_count BETWEEN ('1') AND ('4')  
+  WHERE avg_count BETWEEN ('1') AND ('4')  
   AND level IN ('3')
   AND level_update_count_status IN ('$active')
 ");
@@ -190,7 +190,7 @@ $total_user_level_3_stage_3_count = $row['total_user_level_3_stage_3_count'];
 $total_user_level_4_stage_1_count_data = $dbConn->query("SELECT 
 COUNT(user_id) as total_user_level_4_stage_1_count
   FROM user 
-  WHERE referral_count BETWEEN ('1') AND ('4')  
+  WHERE avg_count BETWEEN ('1') AND ('4')  
   AND level IN ('4')
   AND level_update_count_status IN ('$active')
 ");

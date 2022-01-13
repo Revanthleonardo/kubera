@@ -16,11 +16,11 @@ while($row = $user_data_for_member_list_info->fetch(PDO::FETCH_ASSOC)) {
     $email = $row['email'];
     $registered_date = $row['registered_date'];
     $level = $row['level'];
-    $stage = $row['stage'];
     $referral_number = $row['referral_number'];
     $avg_count = $row['avg_count'];
     $password = $row['password'];
 }
+
 
 ?>
 
