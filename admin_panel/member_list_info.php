@@ -19,8 +19,37 @@ while($row = $user_data_for_member_list_info->fetch(PDO::FETCH_ASSOC)) {
     $referral_number = $row['referral_number'];
     $avg_count = $row['avg_count'];
     $password = $row['password'];
+
+    //for stage_1 1 to 4
+    if($avg_count >= "1" && $avg_count <= "4"){
+        $stage = "1";
+    }
+
+    //for stage_2 5 to 20
+    if($avg_count >= "5" && $avg_count <= "20"){
+        $stage = "2";
+    }
+
+    //for stage_2 21 to 84
+    if($avg_count >= "21" && $avg_count <= "84"){
+        $stage = "3";
+    }
 }
 
+
+//bank_details_data
+$bank_details_data = $dbConn->query("SELECT
+    *
+ FROM bank_details
+    WHERE mobile_number IN ('$mobile_number') 
+    ");
+
+while($row = $bank_details_data->fetch(PDO::FETCH_ASSOC)) {
+    $account_holder_name = $row['account_holder_name'];
+    $account_no = $row['account_no'];
+    $ifsc_code = $row['ifsc_code'];
+    $bank_name = $row['bank_name'];
+}
 
 ?>
 
@@ -63,22 +92,31 @@ while($row = $user_data_for_member_list_info->fetch(PDO::FETCH_ASSOC)) {
                         <tr>
                         <td>Name</td>
                         <td>$name</td>
+
+                        <td>Acc holder name</td>
+                        <td>$account_holder_name</td>
                         </tr>
                         <tr>
                         <td>Mobile number</td>
                         <td>$mobile_number</td>
+
+                        <td>Acc no</td>
+                        <td>$account_no</td>
                         </tr>
                         <tr>
                         <td>Password</td>
                         <td>$password</td>
+
+                        <td>IFSC</td>
+                        <td>$ifsc_code</td>
                         </tr>
-                        <tr>
-                        <td>Email</td>
-                        <td>$email</td>
-                        </tr>
+            
                         <tr>
                         <td>Registered date</td>
                         <td>$registered_date</td>
+
+                        <td>Bank name</td>
+                        <td>$bank_name</td>
                         </tr>
                         <tr>
                         <td>Level</td>
