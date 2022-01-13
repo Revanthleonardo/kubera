@@ -2,25 +2,25 @@
 include "../config.php";
 
 
-$user_id = $_GET['view_user'];
+$mobile_number = $_GET['view_user'];
 
 //send_message
 if(isset($_POST['send_message'])) { 
 
-$user_id = $_POST['user_id'];
+$mobile_number = $_POST['mobile_number'];
 $message = addslashes($_POST['message']);
 $sent_by = "admin";
 
     //inserting_user
   $dbConn->query("INSERT INTO `message` (
-    `user_id`,
+    `mobile_number`,
     `message`,
     `sent_by`,
     `date`,
     `time`
     ) 
     VALUES (
-    '{$user_id}',
+    '{$mobile_number}',
     '{$message}',
     '{$sent_by}',
     '{$date}',
@@ -28,7 +28,7 @@ $sent_by = "admin";
     )
     ;");
 
-header("Location:messages.php?view_user=".$user_id);
+header("Location:messages.php?view_user=".$mobile_number);
 }
 
 //update_data
@@ -38,7 +38,7 @@ if(isset($_REQUEST['view_user'])){
 $get_user_name = $dbConn->query("SELECT
     *
  FROM user
- WHERE user_id IN ('$user_id')
+ WHERE mobile_number IN ('$mobile_number')
     ");
 while($row = $get_user_name->fetch(PDO::FETCH_ASSOC)) {
     $user_name = $row['name'];
@@ -49,7 +49,7 @@ while($row = $get_user_name->fetch(PDO::FETCH_ASSOC)) {
 $view_message = $dbConn->query("SELECT
     *
  FROM message
- WHERE user_id IN ('$user_id')
+ WHERE mobile_number IN ('$mobile_number')
     ");
 
 }
@@ -90,7 +90,7 @@ $view_message = $dbConn->query("SELECT
 
 <div id="fixed_single_div" class="container col-5" style="background-color:#ffffff; margin: 10px; border-radius: 20px ; ">
                         <!-- add data -->
-                        <table class="table table-bordered table-hover" id="example" style="margin-top: 10px;">
+                        <table class="table table-bordered table-hover" style="margin-top: 10px;">
                             <thead>
                                 <tr>
                                     <?php
@@ -102,11 +102,11 @@ $user_data_for_message = $dbConn->query("SELECT
     WHERE user.status IN ('$active') 
     ");
 while($row = $user_data_for_message->fetch(PDO::FETCH_ASSOC)) {
-    $user_id_left_bar = $row['user_id'];
+    $mobile_number_left_bar = $row['mobile_number'];
     $name = $row['name'];
                                     echo "
                                     <tr>
-                                    <th><a href=\"messages.php?view_user=$user_id_left_bar\" class=\"btn\" style=\"float:right;\">$name</a></th>
+                                    <th><a href=\"messages.php?view_user=$mobile_number_left_bar\" class=\"btn\" style=\"float:right;\">$name</a></th>
                                     </tr>
                                     ";
 
@@ -163,8 +163,8 @@ if ($sent_by == "admin") {
     <form action="" method="POST">
     <tr>
         <td class="col-10"><input type="text" class="form-control" name="message" required></td>
+        <input type="hidden" value="<?php echo $mobile_number; ?>" name="mobile_number">
         <td><input type="submit" class="btn btn-lg btn-primary" value="Send" name="send_message"></td>
-        <input type="hidden" value="<?php echo $user_id; ?>" name="user_id">
     </tr>
     </form>
 </table>
@@ -192,10 +192,6 @@ if ($sent_by == "admin") {
 
 
 </body>
-<script>
-    $(document).ready(function() {
-    $('#example').DataTable();
-} );
-</script>
+
 
 </html>
