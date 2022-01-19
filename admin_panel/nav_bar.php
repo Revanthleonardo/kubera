@@ -31,6 +31,9 @@
                                     <a class="nav-link text-dark" href="messages.php"><i class="fas fa-comments"></i> Messages</a>
                                 </li>
                                 <li id="list" class="nav-item " style="line-height: 1.9;">
+                                    <a class="nav-link text-dark" href="broadcast.php"><i class="fas fa-comments"></i> Broadcast</a>
+                                </li>
+                                <li id="list" class="nav-item " style="line-height: 1.9;">
                                     <a class="nav-link text-dark" href="notification.php"><i class="fas fa-bell"></i> Notification</a>
                                 </li>
                                 <li class="nav-item " style="line-height: 1.9;">
