@@ -2,7 +2,7 @@
 $databaseHost = 'localhost';
 $databaseName = 'kubera';
 $databaseUsername = 'root';
-$databasePassword = '';
+$databasePassword = 'root';
 
 /*
 //local

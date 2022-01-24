@@ -1,10 +1,5 @@
 <?php
 include "../config.php";
-
-include "query.php";
-
-$member_list_count = 1;
-
 ?>
 
 <!DOCTYPE html>
@@ -37,52 +32,15 @@ $member_list_count = 1;
                 <div class="col-md-9" style="margin-left:20px ;">
                                         <div id="fixed_single_div" class="container"
                         style="background-color:#ffffff; margin: 10px; border-radius: 20px  ; ">
-                        <!--First Row Start-->
-                        <h5 style="margin-top: 20px;text-align: center;">Members List</h5>
-                        <table class="table table-bordered table-hover" style="margin-top: 10px;">
-                            <thead>
-                                <tr>
-                                    <th class="bg-dark text-white">Sl No</th>
-                                    <th class="bg-dark text-white">Ref ID</th>
-                                    <th class="bg-dark text-white">Name</th>
-                                    <th class="bg-dark text-white">Mobile</th>
-                                    <th class="bg-dark text-white">Score</th>
-                                    <th class="bg-dark text-white">User Panel</th>
-                                    <th class="bg-dark text-white">Info</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                        <?php
-while($row = $user_data_for_member_list->fetch(PDO::FETCH_ASSOC)) {
-    $user_id = $row['user_id'];
-    $referral_number = $row['referral_number'];
-    $name = $row['name'];
-    $mobile_number = $row['mobile_number'];
-    $avg_count = $row['avg_count'];  
 
-    echo "
 
-    <tr>
-        <td>".$member_list_count++."</td>
-        <td>$referral_number</td>
-        <td>$name</td>
-        <td>$mobile_number</td>
-        <td>$avg_count/84</td>
-        <td align=\"center\">
-            <div class=\"btn btn-success\">Go Panel</div>
-        </td>
-        <td align=\"center\">
-            <a href=\"member_list_info.php?user_id=$user_id\" class=\"btn btn-primary\">Info</a>
-        </td>
-    </tr>
+                        <!-- chart -->
+                        <div id="chart-container">
+                        <canvas id="graphCanvas"></canvas>
+                        </div>
+                        <!-- chart -->
 
-    ";
-}
-    ?>
-                                            
-                            </tbody>
-                        </table>
-                    </div>
+                        </div>
                 </div>
 
                     <div class="row">

@@ -31,15 +31,14 @@ while($row = $duplicate_mobile_number->fetch(PDO::FETCH_ASSOC)) {
 }
 
 //user_id_count
-$user_id_count = $dbConn->query("SELECT
-    max(user_id) as max_user_id
- FROM user
+$user_id_count = $dbConn->query("SELECT referral_number FROM user 
+ORDER BY user_id DESC LIMIT 1
     ");
 while($row = $user_id_count->fetch(PDO::FETCH_ASSOC)) {
-    $max_user_id = $row['max_user_id'];
+    $existing_referral_number = $row['existing_referral_number'];
 }
 
-$user_id = $max_user_id + 1;
+
 $referral_number = "AAA".str_pad($user_id, 4, '0', STR_PAD_LEFT);
 
 
@@ -56,7 +55,6 @@ if ($otp_check < 4){
 
 //inserting_user
   $dbConn->query("INSERT INTO `user` (
-    `user_id`,
     `name`,
     `mobile_number`,
     `email`,
@@ -64,7 +62,6 @@ if ($otp_check < 4){
     `referral_number`
     ) 
     VALUES (
-    '{$user_id}',
     '{$name}',
     '{$mobile_number}',
     '{$email}',
