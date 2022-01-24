@@ -1,7 +1,22 @@
 <?php
 include "../config.php";
 
-include "query.php";
+//user_data_for_payment_list
+$user_data_for_payment_list = $dbConn->query("SELECT
+    payment.payment_id_razorpay,
+    user.name,
+    payment.payment_date,
+    payment.payment_id,
+    payment.book_id,
+    book.book_name
+ FROM payment
+  LEFT JOIN 
+  user ON
+  user.mobile_number = payment.mobile_number
+  LEFT JOIN 
+  book ON
+  book.book_id = payment.book_id
+    ");
 
 $payment_list_count = 1;
 

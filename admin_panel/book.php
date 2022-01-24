@@ -1,7 +1,12 @@
 <?php
 include "../config.php";
 
-include "query.php";
+
+//book_data_for_book_list
+$book_data_for_book_list = $dbConn->query("SELECT
+    *
+ FROM book
+    ");
 
 $book_list_count = 1;
 

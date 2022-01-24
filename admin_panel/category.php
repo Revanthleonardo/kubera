@@ -1,7 +1,11 @@
 <?php
 include "../config.php";
 
-include "query.php";
+//category_data_for_category_list
+$category_data_for_category_list = $dbConn->query("SELECT
+    *
+ FROM category
+    ");
 
 $category_list_count = 1;
 

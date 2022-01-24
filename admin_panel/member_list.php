@@ -1,7 +1,13 @@
 <?php
 include "../config.php";
 
-include "query.php";
+//user_data_for_member_list
+$user_data_for_member_list = $dbConn->query("SELECT
+    *
+ FROM user
+ WHERE level_update_count_status IN ('$active')
+    ORDER BY user_id DESC
+    ");
 
 $member_list_count = 1;
 

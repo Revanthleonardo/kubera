@@ -223,55 +223,17 @@ $total_user_level_4_stage_3_count = $row['total_user_level_4_stage_3_count'];
 }
 
 
-//user_data_for_member_list
-$user_data_for_member_list = $dbConn->query("SELECT
-    *
- FROM user
- WHERE level_update_count_status IN ('$active')
-    ORDER BY user_id DESC
-    ");
 
 
-//book_data_for_book_list
-$book_data_for_book_list = $dbConn->query("SELECT
-    *
- FROM book
-    ");
-
-//category_data_for_category_list
-$category_data_for_category_list = $dbConn->query("SELECT
-    *
- FROM category
-    ");
-
-//author_data_for_author_list
-$author_data_for_author_list = $dbConn->query("SELECT
-    *
- FROM author
-    ");
-
-//payment_data_for_payment_list
-$payment_data_for_payment_list = $dbConn->query("SELECT
-    *
- FROM payment
-    ");
 
 
-//user_data_for_payment_list
-$user_data_for_payment_list = $dbConn->query("SELECT
-    payment.payment_id_razorpay,
-    user.name,
-    payment.payment_date,
-    payment.payment_id,
-    payment.book_id,
-    book.book_name
- FROM payment
-  LEFT JOIN 
-  user ON
-  user.mobile_number = payment.mobile_number
-  LEFT JOIN 
-  book ON
-  book.book_id = payment.book_id
-    ");
+
+
+
+
+
+
+
+
 
 ?>

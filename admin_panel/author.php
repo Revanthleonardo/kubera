@@ -1,7 +1,11 @@
 <?php
 include "../config.php";
 
-include "query.php";
+//author_data_for_author_list
+$author_data_for_author_list = $dbConn->query("SELECT
+    *
+ FROM author
+    ");
 
 $author_list_count = 1;
 
