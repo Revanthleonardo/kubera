@@ -35,16 +35,38 @@ $user_id_count = $dbConn->query("SELECT referral_number FROM user
 ORDER BY user_id DESC LIMIT 1
     ");
 while($row = $user_id_count->fetch(PDO::FETCH_ASSOC)) {
-    $existing_referral_number = $row['existing_referral_number'];
+    $existing_referral_number = $row['referral_number'];
+}
+/*
+
+$alphabet = substr("AAA9907",0,3);
+echo "<br>";
+echo substr("AAA9907",3,4);
+echo "<br>";
+$increment  = ++$alphabet;
+echo "$increment";
+
+*/
+
+$referral_number_prefix = substr($existing_referral_number,0,3);  
+$referral_number_suffix = substr($existing_referral_number,3,4); 
+
+//change both prefix and suffix
+if ($referral_number_suffix == 9999) {
+    $referral_number_prefix_increment  = ++$referral_number_prefix;
+    $referral_number_suffix_increment  = ++$referral_number_suffix;
+    $referral_number = $referral_number_prefix_increment . str_pad($active, 4, '0', STR_PAD_LEFT);
+}
+else{
+    $referral_number_suffix_increment  = ++$referral_number_suffix;
+    $referral_number = $referral_number_prefix . str_pad($referral_number_suffix_increment, 4, '0', STR_PAD_LEFT);
 }
 
-
-$referral_number = "AAA".str_pad($user_id, 4, '0', STR_PAD_LEFT);
 
 
 //error_message
 if (isset($duplicate_data) || !isset($name) || !isset($mobile_number)
-    || !isset($password) || !isset($email) || !isset($otp)) {
+    || !isset($password) || !isset($otp)) {
   $returnArr = array("api"=>"registration","result"=>"error");
 }
 else{
