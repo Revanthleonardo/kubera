@@ -27,12 +27,14 @@ if (isset($mobile_number) && isset($book_id)
 $dbConn->query("INSERT INTO `payment` (
     `mobile_number`,
     `book_id`,
-    `payment_id_razorpay`
+    `payment_id_razorpay`,
+    `month_and_year`
     ) 
     VALUES (
     '{$mobile_number}',
     '{$book_id}',
-    '{$payment_id_razorpay}'
+    '{$payment_id_razorpay}',
+    '{$month_and_year_input}'
     )
     ;");
 

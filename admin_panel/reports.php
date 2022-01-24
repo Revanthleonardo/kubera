@@ -1,5 +1,14 @@
 <?php
 include "../config.php";
+
+
+$graph_data = $dbConn->query("SELECT 
+  count(mobile_number) as mobile_number_count,
+  month_and_year
+  FROM payment
+  GROUP BY month_and_year
+ ");
+
 ?>
 
 <!DOCTYPE html>
@@ -12,8 +21,13 @@ include "../config.php";
     <title>Kuberaa</title>
 
     <?php include"include.php"; ?>
-
+    <script type = "text/javascript" src = "https://www.gstatic.com/charts/loader.js">
+      </script>
+      <script type = "text/javascript">
+         google.charts.load('current', {packages: ['corechart']});     
+      </script>
 </head>
+
 
 <body>
 
@@ -33,12 +47,31 @@ include "../config.php";
                                         <div id="fixed_single_div" class="container"
                         style="background-color:#ffffff; margin: 10px; border-radius: 20px  ; ">
 
+                        <div id = "container" style = "width: 550px; height: 400px; margin: 0 auto">
 
-                        <!-- chart -->
-                        <div id="chart-container">
-                        <canvas id="graphCanvas"></canvas>
-                        </div>
-                        <!-- chart -->
+      </div>
+      <script language = "JavaScript">
+         function drawChart() {
+            // Define the chart to be drawn.
+            var data = google.visualization.arrayToDataTable([
+               ['month', 'users'],
+               <?php
+                    while($row = $graph_data->fetch(PDO::FETCH_ASSOC)) {
+                        echo "['".$row["month_and_year"]."', ".$row["mobile_number_count"]."],";
+                    }
+                ?>
+            ]);
+
+            
+            var options = {title: 'Payment data',legend: { position: 'bottom' }}; 
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.ColumnChart(document.getElementById('container'));
+            chart.draw(data, options);
+         }
+         google.charts.setOnLoadCallback(drawChart);
+      </script>
+
 
                         </div>
                 </div>

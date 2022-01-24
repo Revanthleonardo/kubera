@@ -44,5 +44,6 @@ $hide = "style=\"display: none;\"";
 date_default_timezone_set("Asia/Kolkata");
 $time = date("h:i:sa");
 $date = (date("m/d/Y"));
+$month_and_year_input = date('F Y'); 
 
 ?>
