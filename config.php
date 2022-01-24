@@ -36,7 +36,7 @@ try {
 }
 
 
-//error_reporting(0);
+error_reporting(0);
 
 $active = 0;
 $inactive = 1;
