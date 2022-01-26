@@ -34,6 +34,7 @@ COUNT(user_id) as total_user_level_1_count
   FROM user 
   WHERE level IN ('1')  
   AND level_update_count_status IN ('$active')
+  AND avg_count NOT IN ('$active')
 ");
 while($row = $total_user_level_1_count_data->fetch(PDO::FETCH_ASSOC)) {
 $total_user_level_1_count = $row['total_user_level_1_count'];
@@ -45,6 +46,7 @@ COUNT(user_id) as total_user_level_2_count
   FROM user 
   WHERE level IN ('2')  
   AND level_update_count_status IN ('$active')
+  AND avg_count NOT IN ('$active')
 ");
 while($row = $total_user_level_2_count_data->fetch(PDO::FETCH_ASSOC)) {
 $total_user_level_2_count = $row['total_user_level_2_count'];
@@ -55,7 +57,8 @@ $total_user_level_3_count_data = $dbConn->query("SELECT
 COUNT(user_id) as total_user_level_3_count
   FROM user 
   WHERE level IN ('3')
-  AND level_update_count_status IN ('$active')  
+  AND level_update_count_status IN ('$active') 
+  AND avg_count NOT IN ('$active') 
 ");
 while($row = $total_user_level_3_count_data->fetch(PDO::FETCH_ASSOC)) {
 $total_user_level_3_count = $row['total_user_level_3_count'];
@@ -67,6 +70,7 @@ COUNT(user_id) as total_user_level_4_count
   FROM user 
   WHERE level IN ('4')  
   AND level_update_count_status IN ('$active')
+  AND avg_count NOT IN ('$active')
 ");
 while($row = $total_user_level_4_count_data->fetch(PDO::FETCH_ASSOC)) {
 $total_user_level_4_count = $row['total_user_level_4_count'];

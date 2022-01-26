@@ -104,6 +104,7 @@ $view_message = $dbConn->query("SELECT
 
                                     //user_data_for_member_list
 $user_data_for_message = $dbConn->query("SELECT
+ DISTINCT
  user.mobile_number,
  user.name,
  message.notification
@@ -112,7 +113,6 @@ $user_data_for_message = $dbConn->query("SELECT
   message ON
   message.mobile_number = user.mobile_number
     WHERE user.status IN ('$active')
-    GROUP BY user.mobile_number 
     ORDER BY message.notification DESC
 
     ");
