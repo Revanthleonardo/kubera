@@ -1,117 +1,326 @@
-<style type="text/css">
-	/*Now the CSS*/
-* {margin: 0; padding: 0;}
+<?php
+include "../config.php";
 
-.tree ul {
-	padding-top: 20px; position: relative;
-	
-	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
-}
+$user_id_input = $_GET['user_id'];
+$selected_user_id = $_GET['selected_user_id'];
 
-.tree li {
-	float: left; text-align: center;
-	list-style-type: none;
-	position: relative;
-	padding: 20px 5px 0 5px;
-	
-	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
+$level_data = $dbConn->query("SELECT 
+*
+  FROM user   
+  WHERE user_id IN ('$user_id_input')
+");
+while($row = $level_data->fetch(PDO::FETCH_ASSOC)) {
+$level_input = $row['level'];
+$actual_user_name = $row['name'];
 }
 
-/*We will use ::before and ::after to draw the connectors*/
+//stage_1
+$stage_1_data = $dbConn->query("SELECT 
+*
+  FROM user   
+  WHERE referral_id IN ('$user_id_input')
+  AND level IN ('$level_input')
+");
+while($row = $stage_1_data->fetch(PDO::FETCH_ASSOC)) {
 
-.tree li::before, .tree li::after{
-	content: '';
-	position: absolute; top: 0; right: 50%;
-	border-top: 1px solid #ccc;
-	width: 50%; height: 20px;
+$stage_1_user_id[] = $row['user_id'];
 }
-.tree li::after{
-	right: auto; left: 50%;
-	border-left: 1px solid #ccc;
-}
+//stage_1
 
-/*We need to remove left-right connectors from elements without 
-any siblings*/
-.tree li:only-child::after, .tree li:only-child::before {
-	display: none;
-}
+//stage_2
+foreach ($stage_1_user_id as $key => $stage_1_user_id_value) {
+$stage_2_data = $dbConn->query("SELECT 
+*
+  FROM user   
+  WHERE referral_id IN ('$stage_1_user_id_value')
+  AND level IN ('$level_input')
+  
+");
+while($row = $stage_2_data->fetch(PDO::FETCH_ASSOC)) {
 
-/*Remove space from the top of single children*/
-.tree li:only-child{ padding-top: 0;}
+$stage_2_user_id[] = $row['user_id'];
+}
+}
+//stage_2
 
-/*Remove left connector from first child and 
-right connector from last child*/
-.tree li:first-child::before, .tree li:last-child::after{
-	border: 0 none;
-}
-/*Adding back the vertical connector to the last nodes*/
-.tree li:last-child::before{
-	border-right: 1px solid #ccc;
-	border-radius: 0 5px 0 0;
-	-webkit-border-radius: 0 5px 0 0;
-	-moz-border-radius: 0 5px 0 0;
-}
-.tree li:first-child::after{
-	border-radius: 5px 0 0 0;
-	-webkit-border-radius: 5px 0 0 0;
-	-moz-border-radius: 5px 0 0 0;
-}
+$actual_array = array_merge($stage_1_user_id,$stage_2_user_id);
 
-/*Time to add downward connectors from parents*/
-.tree ul ul::before{
-	content: '';
-	position: absolute; top: 0; left: 50%;
-	border-left: 1px solid #ccc;
-	width: 0; height: 20px;
+
+if (isset($selected_user_id)) {
+
+$user_data = $dbConn->query("SELECT 
+*
+  FROM user   
+  WHERE user_id IN ('$selected_user_id')
+");
+while($row = $user_data->fetch(PDO::FETCH_ASSOC)) {
+$user_name = $row['name'];
+$user_referral_number = $row['referral_number'];
 }
 
-.tree li a{
-	border: 1px solid #ccc;
-	padding: 5px 10px;
-	text-decoration: none;
-	color: #666;
-	font-family: arial, verdana, tahoma;
-	font-size: 11px;
-	display: inline-block;
-	
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	
-	transition: all 0.5s;
-	-webkit-transition: all 0.5s;
-	-moz-transition: all 0.5s;
+$view_tree_user_data = $dbConn->query("SELECT
+    user_id,
+    name,
+    referral_number,
+    level
+ FROM user
+ WHERE referral_id IN ('$selected_user_id')
+ AND level IN ('$level_input')
+    ");
+
+while($row = $view_tree_user_data->fetch(PDO::FETCH_ASSOC)) {
+    $view_tree_user_id[] = $row['user_id'];
+    $view_tree_name[] = $row['name'];
+    $view_tree_referral_number[] = $row['referral_number'];
+    $view_tree_level[] = $row['level'];
 }
 
-/*Time for some hover effects*/
-/*We will apply the hover effect the the lineage of the element also*/
-.tree li a:hover, .tree li a:hover+ul li a {
-	background: #c8e4f8; color: #000; border: 1px solid #94a0b4;
 }
-/*Connector styles on hover*/
-.tree li a:hover+ul li::after, 
-.tree li a:hover+ul li::before, 
-.tree li a:hover+ul::before, 
-.tree li a:hover+ul ul::before{
-	border-color:  #94a0b4;
-}
-</style>
 
-<div class="tree">
-	<ul>
-		<li>
-			<a href="#">user id</a>
-			<ul>
-				<!-- stage 1 -->
-				<li><a href="">1</a></li>
-				<li><a href="">2</a></li>
-				<li><a href="">3</a></li>
-				<li><a href="">4</a></li>
-			</ul>
-		</li>
-	</ul>
-</div>
+else{
+
+$user_data = $dbConn->query("SELECT 
+*
+  FROM user   
+  WHERE user_id IN ('$user_id_input')
+");
+while($row = $user_data->fetch(PDO::FETCH_ASSOC)) {
+$user_name = $row['name'];
+$user_referral_number = $row['referral_number'];
+}
+
+$view_tree_user_data = $dbConn->query("SELECT
+    user_id,
+    name,
+    referral_number,
+    level
+ FROM user
+ WHERE referral_id IN ('$user_id_input')
+ AND level IN ('$level_input')
+    ");
+
+while($row = $view_tree_user_data->fetch(PDO::FETCH_ASSOC)) {
+    $view_tree_user_id[] = $row['user_id'];
+    $view_tree_name[] = $row['name'];
+    $view_tree_referral_number[] = $row['referral_number'];
+    $view_tree_level[] = $row['level'];
+}
+
+}
+
+
+/*
+if (in_array("4", $actual_array))
+  {
+  echo "Match found";
+  }
+else
+  {
+  echo "Match not found";
+  }
+*/
+
+
+
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuberaa</title>
+
+    <?php include"include.php"; ?>
+
+</head>
+
+<body>
+
+
+    <div id="head" class="container-fluid">
+        <div class="head">
+            <div class="col-2 p-4">
+                <a href=""><img src="images/kuberaa.png" alt="Trulli" width="50" height="50" left=-20px></a>
+                <span class="header">Kuberaa</span>
+            </div>
+            <div class="row " style="border-top: 2px solid rgb(206, 201, 201);">
+                <!-- navbar  -->
+                <?php include "nav_bar.php" ?>
+
+                <!--Secand Column Start-->
+                <div class="col-md-9" style="margin-left:20px ;">
+                                        <div id="fixed_single_div" class="container"
+                        style="background-color:#ffffff; margin: 10px; border-radius: 20px ; display: grid; place-items:center; ">
+
+                <h1><?php
+                echo " 
+                <a class=\"text-decoration-none text-dark\" href=\"tree_view.php?user_id=$user_id_input\"> $actual_user_name | level - $level_input </a> ";
+                ?></h1>
+
+            	<div class="row" >
+            		<div class="col-12 text-center">
+            			<h4><?php echo $user_name; ?></h4>
+                        <h4><?php echo $user_referral_number; ?></h4>
+                        <hr class="vertical_line" >
+            		</div>
+
+                    <div class="col-12 text-center">
+                        <hr>
+                    </div>
+
+                    <?php
+                    //0
+                    if (in_array($view_tree_user_id[0], $actual_array))
+                    {
+                    echo "
+                    <div class=\"col-3 text-center\">
+                        <hr class=\"vertical_line\" >
+                        <h4>
+                        <a class=\"text-decoration-none text-dark\" href=\"tree_view.php?user_id=$user_id_input&&selected_user_id=$view_tree_user_id[0]\"> $view_tree_name[0] </a>
+                        <br>
+                        <a class=\"text-decoration-none text-dark\" href=\"tree_view.php?user_id=$user_id_input&&selected_user_id=$view_tree_user_id[0]\"> $view_tree_referral_number[0]</a>
+                        </h4>
+                    </div>
+                    ";
+                    }
+                    else
+                    {
+                    echo "
+                    <div class=\"col-3 text-center\">
+                        <hr class=\"vertical_line\" >
+                        <h4>
+                        <a class=\"text-decoration-none text-dark\" href=\"#\"> $view_tree_name[0] </a>
+                        <br>
+                        <a class=\"text-decoration-none text-dark\" href=\"#\"> $view_tree_referral_number[0]</a>
+                        </h4>
+                    </div>
+                    ";
+                    }
+                    
+                    ?>
+
+            		<?php
+                    //1
+                    if (in_array($view_tree_user_id[1], $actual_array))
+                    {
+                    echo "
+                    <div class=\"col-3 text-center\">
+                        <hr class=\"vertical_line\" >
+                        <h4>
+                        <a class=\"text-decoration-none text-dark\" href=\"tree_view.php?user_id=$user_id_input&&selected_user_id=$view_tree_user_id[1]\"> $view_tree_name[1] </a>
+                        <br>
+                        <a class=\"text-decoration-none text-dark\" href=\"tree_view.php?user_id=$user_id_input&&selected_user_id=$view_tree_user_id[1]\"> $view_tree_referral_number[1]</a>
+                        </h4>
+                    </div>
+                    ";
+                    }
+                    else
+                    {
+                    echo "
+                    <div class=\"col-3 text-center\">
+                        <hr class=\"vertical_line\" >
+                        <h4>
+                        <a class=\"text-decoration-none text-dark\" href=\"#\"> $view_tree_name[1] </a>
+                        <br>
+                        <a class=\"text-decoration-none text-dark\" href=\"#\"> $view_tree_referral_number[1]</a>
+                        </h4>
+                    </div>
+                    ";
+                    }
+                    
+                    ?>
+
+            		<?php
+                    //2
+                    if (in_array($view_tree_user_id[2], $actual_array))
+                    {
+                    echo "
+                    <div class=\"col-3 text-center\">
+                        <hr class=\"vertical_line\" >
+                        <h4>
+                        <a class=\"text-decoration-none text-dark\" href=\"tree_view.php?user_id=$user_id_input&&selected_user_id=$view_tree_user_id[2]\"> $view_tree_name[2] </a>
+                        <br>
+                        <a class=\"text-decoration-none text-dark\" href=\"tree_view.php?user_id=$user_id_input&&selected_user_id=$view_tree_user_id[2]\"> $view_tree_referral_number[2]</a>
+                        </h4>
+                    </div>
+                    ";
+                    }
+                    else
+                    {
+                    echo "
+                    <div class=\"col-3 text-center\">
+                        <hr class=\"vertical_line\" >
+                        <h4>
+                        <a class=\"text-decoration-none text-dark\" href=\"#\"> $view_tree_name[2] </a>
+                        <br>
+                        <a class=\"text-decoration-none text-dark\" href=\"#\"> $view_tree_referral_number[2]</a>
+                        </h4>
+                    </div>
+                    ";
+                    }
+                    
+                    ?>
+
+            		<?php
+                    //3
+                    if (in_array($view_tree_user_id[3], $actual_array))
+                    {
+                    echo "
+                    <div class=\"col-3 text-center\">
+                        <hr class=\"vertical_line\" >
+                        <h4>
+                        <a class=\"text-decoration-none text-dark\" href=\"tree_view.php?user_id=$user_id_input&&selected_user_id=$view_tree_user_id[3]\"> $view_tree_name[3] </a>
+                        <br>
+                        <a class=\"text-decoration-none text-dark\" href=\"tree_view.php?user_id=$user_id_input&&selected_user_id=$view_tree_user_id[3]\"> $view_tree_referral_number[3]</a>
+                        </h4>
+                    </div>
+                    ";
+                    }
+                    else
+                    {
+                    echo "
+                    <div class=\"col-3 text-center\">
+                        <hr class=\"vertical_line\" >
+                        <h4>
+                        <a class=\"text-decoration-none text-dark\" href=\"#\"> $view_tree_name[3] </a>
+                        <br>
+                        <a class=\"text-decoration-none text-dark\" href=\"#\"> $view_tree_referral_number[3]</a>
+                        </h4>
+                    </div>
+                    ";
+                    }
+                    
+                    ?>
+            		
+            	</div>
+
+
+				</div>
+
+                    <div class="row">
+                        <div class="col">
+                            <h5>Copywrites@Kuberaa</h5>
+                        </div>
+                        <div class="col" style="text-align: center;">
+                            <h5>Powered by Besttech</h5>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+</body>
+
+</html>

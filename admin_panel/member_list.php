@@ -82,7 +82,7 @@ while($row = $user_data_for_member_list->fetch(PDO::FETCH_ASSOC)) {
         <td>$level</td>
         <td>$avg_count/84</td>
         <td align=\"center\">
-            <div class=\"btn btn-success\">Go Panel</div>
+            <a href=\"tree_view.php?user_id=$user_id\" class=\"btn btn-success\">Info</a>
         </td>
         <td align=\"center\">
             <a href=\"member_list_info.php?user_id=$user_id\" class=\"btn btn-primary\">Info</a>
