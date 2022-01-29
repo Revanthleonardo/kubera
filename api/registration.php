@@ -54,11 +54,11 @@ $referral_number_suffix = substr($existing_referral_number,3,4);
 //change both prefix and suffix
 if ($referral_number_suffix == 9999) {
     $referral_number_prefix_increment  = ++$referral_number_prefix;
-    $referral_number_suffix_increment  = ++$referral_number_suffix;
+    $referral_number_suffix_increment  = $referral_number_suffix + 1;
     $referral_number = $referral_number_prefix_increment . str_pad($active, 4, '0', STR_PAD_LEFT);
 }
 else{
-    $referral_number_suffix_increment  = ++$referral_number_suffix;
+    $referral_number_suffix_increment  = $referral_number_suffix + 1;
     $referral_number = $referral_number_prefix . str_pad($referral_number_suffix_increment, 4, '0', STR_PAD_LEFT);
 }
 
