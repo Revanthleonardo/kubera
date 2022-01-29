@@ -46,4 +46,7 @@ $time = date("h:i:sa");
 $date = (date("m/d/Y"));
 $month_and_year_input = date('F Y'); 
 
+$kubera_user_name = "kubera";
+$kubera_password = "kubera_password";
+
 ?>

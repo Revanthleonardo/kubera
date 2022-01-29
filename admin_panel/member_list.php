@@ -1,6 +1,13 @@
 <?php
 include "../config.php";
 
+session_start();
+$user_name = $_SESSION["user_name"];
+
+if ($user_name == "") {
+  header("Location: login.php");
+}
+
 //user_data_for_member_list
 $user_data_for_member_list = $dbConn->query("SELECT
     *

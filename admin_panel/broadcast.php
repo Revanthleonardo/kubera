@@ -1,6 +1,12 @@
 <?php
 include "../config.php";
 
+session_start();
+$user_name = $_SESSION["user_name"];
+
+if ($user_name == "") {
+  header("Location: login.php");
+}
 
 //send_message
 if(isset($_POST['send_message'])) { 

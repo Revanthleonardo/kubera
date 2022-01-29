@@ -1,6 +1,13 @@
 <?php
 include "../config.php";
 
+session_start();
+$user_name = $_SESSION["user_name"];
+
+if ($user_name == "") {
+  header("Location: login.php");
+}
+
 $user_id_input = $_GET['user_id'];
 $selected_user_id = $_GET['selected_user_id'];
 
