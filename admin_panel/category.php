@@ -5,7 +5,7 @@ session_start();
 $user_name = $_SESSION["user_name"];
 
 if ($user_name == "") {
-  header("Location: login.php");
+  header("Location: ../index.php");
 }
 
 //category_data_for_category_list
