@@ -5,8 +5,8 @@ session_start();
 $user_name = $_SESSION["user_name"];
 
 if ($user_name == "") {
-  header("Location: ../index.php");
-}
+    header("Location: login.php");
+  }
 
 $user_id = $_GET['user_id'];
 

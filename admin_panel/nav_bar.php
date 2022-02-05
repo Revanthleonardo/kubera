@@ -38,7 +38,7 @@
                                         Reports</a>
                                 </li>
                                 <li class="nav-item  " style="line-height: 1.9;">
-                                    <a id="list" class="nav-link text-dark" href="../index.php"><i class="fas fa-sign-out-alt"></i>
+                                    <a id="list" class="nav-link text-dark" href="login.php"><i class="fas fa-sign-out-alt"></i>
                                         Logout</a>
                                 </li>
                             </ul>

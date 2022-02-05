@@ -5,8 +5,8 @@ session_start();
 $user_name = $_SESSION["user_name"];
 
 if ($user_name == "") {
-  header("Location: ../index.php");
-}
+    header("Location: login.php");
+  }
 
 $mobile_number = $_GET['view_user'];
 
