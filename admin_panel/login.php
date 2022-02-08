@@ -12,12 +12,19 @@ if(isset($_POST['login'])) {
 $user_name = $_POST['user_name'];
 $password = $_POST['password'];
 
-if ($user_name == $kubera_user_name || $password == $kubera_password) {
+$login = $dbConn->query("SELECT
+    *
+ FROM admin
+ WHERE user_name IN ('$user_name')
+ AND password IN ('$password')
+    ");
+while($row = $login->fetch(PDO::FETCH_ASSOC)) {
   session_start();
   $_SESSION["user_name"] = $user_name;
   $_SESSION["password"] = $password;
   header("Location:index.php");
 }
+
 }
 
 ?>
@@ -65,6 +72,10 @@ display: grid !important;
                   </div>
                   <button type="submit" name="login" class="btn btn-primary form-control">Submit</button>
                 </form>
+
+
+                <a href="get_otp.php" class="text-white">Reset Password</a>
+                
 
     </div>
    
