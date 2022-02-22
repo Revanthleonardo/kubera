@@ -99,6 +99,7 @@ while($row = $book_data_for_book_list->fetch(PDO::FETCH_ASSOC)) {
     $author_name = $row['author_name'];
     $category_name = $row['category_name'];
     $author_image = $row['author_image'];
+    $category_image = $row['category_image'];
 
     echo "
 
