@@ -10,8 +10,26 @@ if ($user_name == "") {
 
 //book_data_for_book_list
 $book_data_for_book_list = $dbConn->query("SELECT
-    *
+    book.book_id,
+    book.book_name,
+    book.book_image,
+    book.amount,
+    book.book_path,
+    book.trending,
+    author.author_id,
+    author.author_name,
+    author.author_image,
+    category.category_id,
+    category.category_name,
+    category.category_image
  FROM book
+  LEFT JOIN 
+  author ON
+  author.author_id = book.author_id
+  LEFT JOIN 
+  category ON
+  category.category_id = book.category_id
+ WHERE book.status IN ('$active')
     ");
 
 $book_list_count = 1;
@@ -59,6 +77,16 @@ $book_list_count = 1;
                                     <th class="bg-dark text-white">book Name</th>
                                     <th class="bg-dark text-white">book Image</th>
                                     <th class="bg-dark text-white">book amount</th>
+                                    
+                                    <th class="bg-dark text-white">author name</th>
+                                    
+                                    <th class="bg-dark text-white">author image</th>
+                                    
+                                    <th class="bg-dark text-white">category name</th>
+                                    
+                                    <th class="bg-dark text-white">category image</th>
+                                    
+                                    
                                 </tr>
                             </thead>
                             <tbody>
@@ -68,6 +96,9 @@ while($row = $book_data_for_book_list->fetch(PDO::FETCH_ASSOC)) {
     $book_image = $row['book_image'];
     $book_id = $row['book_id'];
     $amount = $row['amount'];
+    $author_name = $row['author_name'];
+    $category_name = $row['category_name'];
+    $author_image = $row['author_image'];
 
     echo "
 
@@ -76,6 +107,10 @@ while($row = $book_data_for_book_list->fetch(PDO::FETCH_ASSOC)) {
         <td>$book_name</td>
         <td><img src=\"$book_image\" class=\"table_image\"></td>
         <td>$amount</td>
+        <td>$author_name</td>
+        <td><img src=\"$author_image\" class=\"table_image\"></td>
+        <td>$category_name</td>
+        <td><img src=\"$category_image\" class=\"table_image\"></td>
     </tr>
 
     ";
